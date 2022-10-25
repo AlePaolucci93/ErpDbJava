@@ -19,7 +19,7 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class ReportService {
 
-    private final RecordRepository recordRepository;
+   RecordRepository recordRepository;
 
     public String sendMonthlyReport(String reportFormat) throws FileNotFoundException, JRException {
         String destinationPath = "src/main/resources";
