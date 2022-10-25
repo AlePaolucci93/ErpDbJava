@@ -7,19 +7,14 @@ import java.util.Objects;
 @Entity
 @Table(name = "AssetTypes", schema = "public", catalog = "ErpDB")
 public class AssetTypesEntity {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Id
-    @Column(name = "Id")
     private int id;
-    @Basic
-    @Column(name = "Name")
     private String name;
-    @Basic
-    @Column(name = "IsDeleted")
     private boolean isDeleted;
-    @OneToMany(mappedBy = "assetTypesByAssetTypeId")
     private Collection<AssetsEntity> assetsById;
 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @Column(name = "Id", nullable = false)
     public int getId() {
         return id;
     }
@@ -28,6 +23,8 @@ public class AssetTypesEntity {
         this.id = id;
     }
 
+    @Basic
+    @Column(name = "Name", nullable = true, length = -1)
     public String getName() {
         return name;
     }
@@ -36,6 +33,8 @@ public class AssetTypesEntity {
         this.name = name;
     }
 
+    @Basic
+    @Column(name = "IsDeleted", nullable = false)
     public boolean isDeleted() {
         return isDeleted;
     }
@@ -57,6 +56,7 @@ public class AssetTypesEntity {
         return Objects.hash(id, name, isDeleted);
     }
 
+    @OneToMany(mappedBy = "assetTypesByAssetTypeId")
     public Collection<AssetsEntity> getAssetsById() {
         return assetsById;
     }

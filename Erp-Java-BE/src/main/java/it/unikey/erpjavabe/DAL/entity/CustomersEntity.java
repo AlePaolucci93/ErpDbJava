@@ -9,63 +9,30 @@ import java.util.Objects;
 @Entity
 @Table(name = "Customers", schema = "public", catalog = "ErpDB")
 public class CustomersEntity {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Id
-    @Column(name = "Id")
     private int id;
-    @Basic
-    @Column(name = "Name")
     private String name;
-    @Basic
-    @Column(name = "BillingAddress")
     private String billingAddress;
-    @Basic
-    @Column(name = "StartCollaborationDate")
     private Timestamp startCollaborationDate;
-    @Basic
-    @Column(name = "EndCollaborationDate")
     private Timestamp endCollaborationDate;
-    @Basic
-    @Column(name = "Email")
     private String email;
-    @Basic
-    @Column(name = "PhoneNumber")
     private String phoneNumber;
-    @Basic
-    @Column(name = "IsDeleted")
     private boolean isDeleted;
-    @Basic
-    @Column(name = "Plafond")
     private BigInteger plafond;
-    @Basic
-    @Column(name = "Balance")
     private BigInteger balance;
-    @Basic
-    @Column(name = "VatNumber")
     private String vatNumber;
-    @Basic
-    @Column(name = "UniqueCode")
     private String uniqueCode;
-    @Basic
-    @Column(name = "Pec")
     private String pec;
-    @Basic
-    @Column(name = "Description")
     private String description;
-    @Basic
-    @Column(name = "CustomerType")
     private int customerType;
-    @OneToMany(mappedBy = "customersByCustomerId")
     private Collection<CustomerFileEntity> customerFilesById;
-    @OneToMany(mappedBy = "customersByCustomerId")
     private Collection<InvoicesEntity> invoicesById;
-    @OneToMany(mappedBy = "customersByCustomerId")
     private Collection<ProjectsEntity> projectsById;
-    @OneToMany(mappedBy = "customersByCustomerId")
     private Collection<PropositionsEntity> propositionsById;
-    @OneToMany(mappedBy = "customersByCustomerId")
     private Collection<RepresentativesEntity> representativesById;
 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @Column(name = "Id", nullable = false)
     public int getId() {
         return id;
     }
@@ -74,6 +41,8 @@ public class CustomersEntity {
         this.id = id;
     }
 
+    @Basic
+    @Column(name = "Name", nullable = true, length = -1)
     public String getName() {
         return name;
     }
@@ -82,6 +51,8 @@ public class CustomersEntity {
         this.name = name;
     }
 
+    @Basic
+    @Column(name = "BillingAddress", nullable = true, length = -1)
     public String getBillingAddress() {
         return billingAddress;
     }
@@ -90,6 +61,8 @@ public class CustomersEntity {
         this.billingAddress = billingAddress;
     }
 
+    @Basic
+    @Column(name = "StartCollaborationDate", nullable = true)
     public Timestamp getStartCollaborationDate() {
         return startCollaborationDate;
     }
@@ -98,6 +71,8 @@ public class CustomersEntity {
         this.startCollaborationDate = startCollaborationDate;
     }
 
+    @Basic
+    @Column(name = "EndCollaborationDate", nullable = true)
     public Timestamp getEndCollaborationDate() {
         return endCollaborationDate;
     }
@@ -106,6 +81,8 @@ public class CustomersEntity {
         this.endCollaborationDate = endCollaborationDate;
     }
 
+    @Basic
+    @Column(name = "Email", nullable = true, length = -1)
     public String getEmail() {
         return email;
     }
@@ -114,6 +91,8 @@ public class CustomersEntity {
         this.email = email;
     }
 
+    @Basic
+    @Column(name = "PhoneNumber", nullable = true, length = -1)
     public String getPhoneNumber() {
         return phoneNumber;
     }
@@ -122,6 +101,8 @@ public class CustomersEntity {
         this.phoneNumber = phoneNumber;
     }
 
+    @Basic
+    @Column(name = "IsDeleted", nullable = false)
     public boolean isDeleted() {
         return isDeleted;
     }
@@ -130,6 +111,8 @@ public class CustomersEntity {
         isDeleted = deleted;
     }
 
+    @Basic
+    @Column(name = "Plafond", nullable = false, precision = 0)
     public BigInteger getPlafond() {
         return plafond;
     }
@@ -138,6 +121,8 @@ public class CustomersEntity {
         this.plafond = plafond;
     }
 
+    @Basic
+    @Column(name = "Balance", nullable = false, precision = 0)
     public BigInteger getBalance() {
         return balance;
     }
@@ -146,6 +131,8 @@ public class CustomersEntity {
         this.balance = balance;
     }
 
+    @Basic
+    @Column(name = "VatNumber", nullable = true, length = -1)
     public String getVatNumber() {
         return vatNumber;
     }
@@ -154,6 +141,8 @@ public class CustomersEntity {
         this.vatNumber = vatNumber;
     }
 
+    @Basic
+    @Column(name = "UniqueCode", nullable = true, length = -1)
     public String getUniqueCode() {
         return uniqueCode;
     }
@@ -162,6 +151,8 @@ public class CustomersEntity {
         this.uniqueCode = uniqueCode;
     }
 
+    @Basic
+    @Column(name = "Pec", nullable = true, length = -1)
     public String getPec() {
         return pec;
     }
@@ -170,6 +161,8 @@ public class CustomersEntity {
         this.pec = pec;
     }
 
+    @Basic
+    @Column(name = "Description", nullable = true, length = -1)
     public String getDescription() {
         return description;
     }
@@ -178,6 +171,8 @@ public class CustomersEntity {
         this.description = description;
     }
 
+    @Basic
+    @Column(name = "CustomerType", nullable = false)
     public int getCustomerType() {
         return customerType;
     }
@@ -199,6 +194,7 @@ public class CustomersEntity {
         return Objects.hash(id, name, billingAddress, startCollaborationDate, endCollaborationDate, email, phoneNumber, isDeleted, plafond, balance, vatNumber, uniqueCode, pec, description, customerType);
     }
 
+    @OneToMany(mappedBy = "customersByCustomerId")
     public Collection<CustomerFileEntity> getCustomerFilesById() {
         return customerFilesById;
     }
@@ -207,6 +203,7 @@ public class CustomersEntity {
         this.customerFilesById = customerFilesById;
     }
 
+    @OneToMany(mappedBy = "customersByCustomerId")
     public Collection<InvoicesEntity> getInvoicesById() {
         return invoicesById;
     }
@@ -215,6 +212,7 @@ public class CustomersEntity {
         this.invoicesById = invoicesById;
     }
 
+    @OneToMany(mappedBy = "customersByCustomerId")
     public Collection<ProjectsEntity> getProjectsById() {
         return projectsById;
     }
@@ -223,6 +221,7 @@ public class CustomersEntity {
         this.projectsById = projectsById;
     }
 
+    @OneToMany(mappedBy = "customersByCustomerId")
     public Collection<PropositionsEntity> getPropositionsById() {
         return propositionsById;
     }
@@ -231,6 +230,7 @@ public class CustomersEntity {
         this.propositionsById = propositionsById;
     }
 
+    @OneToMany(mappedBy = "customersByCustomerId")
     public Collection<RepresentativesEntity> getRepresentativesById() {
         return representativesById;
     }

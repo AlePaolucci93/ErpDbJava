@@ -6,20 +6,14 @@ import java.util.Objects;
 @Entity
 @Table(name = "FilePaths", schema = "public", catalog = "ErpDB")
 public class FilePathsEntity {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Id
-    @Column(name = "Id")
     private int id;
-    @Basic
-    @Column(name = "Path")
     private String path;
-    @Basic
-    @Column(name = "EmployeeDAOId")
     private int employeeDaoId;
-    @ManyToOne
-    @JoinColumn(name = "EmployeeDAOId", referencedColumnName = "Id", nullable = false)
     private EmployeesEntity employeesByEmployeeDaoId;
 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @Column(name = "Id", nullable = false)
     public int getId() {
         return id;
     }
@@ -28,6 +22,8 @@ public class FilePathsEntity {
         this.id = id;
     }
 
+    @Basic
+    @Column(name = "Path", nullable = true, length = -1)
     public String getPath() {
         return path;
     }
@@ -36,6 +32,8 @@ public class FilePathsEntity {
         this.path = path;
     }
 
+    @Basic
+    @Column(name = "EmployeeDAOId", nullable = false)
     public int getEmployeeDaoId() {
         return employeeDaoId;
     }
@@ -57,6 +55,8 @@ public class FilePathsEntity {
         return Objects.hash(id, path, employeeDaoId);
     }
 
+    @ManyToOne
+    @JoinColumn(name = "EmployeeDAOId", referencedColumnName = "Id", nullable = false)
     public EmployeesEntity getEmployeesByEmployeeDaoId() {
         return employeesByEmployeeDaoId;
     }

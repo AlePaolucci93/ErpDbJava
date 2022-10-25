@@ -7,25 +7,15 @@ import java.util.Objects;
 @Table(name = "AspNetUserTokens", schema = "public", catalog = "ErpDB")
 @IdClass(AspNetUserTokensEntityPK.class)
 public class AspNetUserTokensEntity {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Id
-    @Column(name = "UserId")
     private int userId;
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Id
-    @Column(name = "LoginProvider")
     private String loginProvider;
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Id
-    @Column(name = "Name")
     private String name;
-    @Basic
-    @Column(name = "Value")
     private String value;
-    @ManyToOne
-    @JoinColumn(name = "UserId", referencedColumnName = "Id", nullable = false)
     private AspNetUsersEntity aspNetUsersByUserId;
 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @Column(name = "UserId", nullable = false)
     public int getUserId() {
         return userId;
     }
@@ -34,6 +24,9 @@ public class AspNetUserTokensEntity {
         this.userId = userId;
     }
 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @Column(name = "LoginProvider", nullable = false, length = -1)
     public String getLoginProvider() {
         return loginProvider;
     }
@@ -42,6 +35,9 @@ public class AspNetUserTokensEntity {
         this.loginProvider = loginProvider;
     }
 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @Column(name = "Name", nullable = false, length = -1)
     public String getName() {
         return name;
     }
@@ -50,6 +46,8 @@ public class AspNetUserTokensEntity {
         this.name = name;
     }
 
+    @Basic
+    @Column(name = "Value", nullable = true, length = -1)
     public String getValue() {
         return value;
     }
@@ -71,6 +69,8 @@ public class AspNetUserTokensEntity {
         return Objects.hash(userId, loginProvider, name, value);
     }
 
+    @ManyToOne
+    @JoinColumn(name = "UserId", referencedColumnName = "Id", nullable = false)
     public AspNetUsersEntity getAspNetUsersByUserId() {
         return aspNetUsersByUserId;
     }

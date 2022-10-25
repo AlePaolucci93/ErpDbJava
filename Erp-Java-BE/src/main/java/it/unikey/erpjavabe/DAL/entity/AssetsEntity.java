@@ -8,28 +8,17 @@ import java.util.Objects;
 @Entity
 @Table(name = "Assets", schema = "public", catalog = "ErpDB")
 public class AssetsEntity {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Id
-    @Column(name = "Id")
     private int id;
-    @Basic
-    @Column(name = "SerialNumber")
     private String serialNumber;
-    @Basic
-    @Column(name = "IsDeleted")
     private boolean isDeleted;
-    @Basic
-    @Column(name = "Price")
     private BigInteger price;
-    @Basic
-    @Column(name = "AssetTypeId")
     private Integer assetTypeId;
-    @ManyToOne
-    @JoinColumn(name = "AssetTypeId", referencedColumnName = "Id")
     private AssetTypesEntity assetTypesByAssetTypeId;
-    @OneToMany(mappedBy = "assetsByAssetId")
     private Collection<EmployeeAssetsEntity> employeeAssetsById;
 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @Column(name = "Id", nullable = false)
     public int getId() {
         return id;
     }
@@ -38,6 +27,8 @@ public class AssetsEntity {
         this.id = id;
     }
 
+    @Basic
+    @Column(name = "SerialNumber", nullable = true, length = -1)
     public String getSerialNumber() {
         return serialNumber;
     }
@@ -46,6 +37,8 @@ public class AssetsEntity {
         this.serialNumber = serialNumber;
     }
 
+    @Basic
+    @Column(name = "IsDeleted", nullable = false)
     public boolean isDeleted() {
         return isDeleted;
     }
@@ -54,6 +47,8 @@ public class AssetsEntity {
         isDeleted = deleted;
     }
 
+    @Basic
+    @Column(name = "Price", nullable = false, precision = 0)
     public BigInteger getPrice() {
         return price;
     }
@@ -62,6 +57,8 @@ public class AssetsEntity {
         this.price = price;
     }
 
+    @Basic
+    @Column(name = "AssetTypeId", nullable = true)
     public Integer getAssetTypeId() {
         return assetTypeId;
     }
@@ -83,6 +80,8 @@ public class AssetsEntity {
         return Objects.hash(id, serialNumber, isDeleted, price, assetTypeId);
     }
 
+    @ManyToOne
+    @JoinColumn(name = "AssetTypeId", referencedColumnName = "Id")
     public AssetTypesEntity getAssetTypesByAssetTypeId() {
         return assetTypesByAssetTypeId;
     }
@@ -91,6 +90,7 @@ public class AssetsEntity {
         this.assetTypesByAssetTypeId = assetTypesByAssetTypeId;
     }
 
+    @OneToMany(mappedBy = "assetsByAssetId")
     public Collection<EmployeeAssetsEntity> getEmployeeAssetsById() {
         return employeeAssetsById;
     }

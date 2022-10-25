@@ -6,23 +6,15 @@ import java.util.Objects;
 @Entity
 @Table(name = "AspNetUserClaims", schema = "public", catalog = "ErpDB")
 public class AspNetUserClaimsEntity {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Id
-    @Column(name = "Id")
     private int id;
-    @Basic
-    @Column(name = "UserId")
     private int userId;
-    @Basic
-    @Column(name = "ClaimType")
     private String claimType;
-    @Basic
-    @Column(name = "ClaimValue")
     private String claimValue;
-    @ManyToOne
-    @JoinColumn(name = "UserId", referencedColumnName = "Id", nullable = false)
     private AspNetUsersEntity aspNetUsersByUserId;
 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @Column(name = "Id", nullable = false)
     public int getId() {
         return id;
     }
@@ -31,6 +23,8 @@ public class AspNetUserClaimsEntity {
         this.id = id;
     }
 
+    @Basic
+    @Column(name = "UserId", nullable = false)
     public int getUserId() {
         return userId;
     }
@@ -39,6 +33,8 @@ public class AspNetUserClaimsEntity {
         this.userId = userId;
     }
 
+    @Basic
+    @Column(name = "ClaimType", nullable = true, length = -1)
     public String getClaimType() {
         return claimType;
     }
@@ -47,6 +43,8 @@ public class AspNetUserClaimsEntity {
         this.claimType = claimType;
     }
 
+    @Basic
+    @Column(name = "ClaimValue", nullable = true, length = -1)
     public String getClaimValue() {
         return claimValue;
     }
@@ -68,6 +66,8 @@ public class AspNetUserClaimsEntity {
         return Objects.hash(id, userId, claimType, claimValue);
     }
 
+    @ManyToOne
+    @JoinColumn(name = "UserId", referencedColumnName = "Id", nullable = false)
     public AspNetUsersEntity getAspNetUsersByUserId() {
         return aspNetUsersByUserId;
     }

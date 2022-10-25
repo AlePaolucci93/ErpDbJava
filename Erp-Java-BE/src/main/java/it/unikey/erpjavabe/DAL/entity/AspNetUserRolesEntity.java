@@ -7,21 +7,14 @@ import java.util.Objects;
 @Table(name = "AspNetUserRoles", schema = "public", catalog = "ErpDB")
 @IdClass(AspNetUserRolesEntityPK.class)
 public class AspNetUserRolesEntity {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Id
-    @Column(name = "UserId")
     private int userId;
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Id
-    @Column(name = "RoleId")
     private int roleId;
-    @ManyToOne
-    @JoinColumn(name = "UserId", referencedColumnName = "Id", nullable = false)
     private AspNetUsersEntity aspNetUsersByUserId;
-    @ManyToOne
-    @JoinColumn(name = "RoleId", referencedColumnName = "Id", nullable = false)
     private AspNetRolesEntity aspNetRolesByRoleId;
 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @Column(name = "UserId", nullable = false)
     public int getUserId() {
         return userId;
     }
@@ -30,6 +23,9 @@ public class AspNetUserRolesEntity {
         this.userId = userId;
     }
 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @Column(name = "RoleId", nullable = false)
     public int getRoleId() {
         return roleId;
     }
@@ -51,6 +47,8 @@ public class AspNetUserRolesEntity {
         return Objects.hash(userId, roleId);
     }
 
+    @ManyToOne
+    @JoinColumn(name = "UserId", referencedColumnName = "Id", nullable = false)
     public AspNetUsersEntity getAspNetUsersByUserId() {
         return aspNetUsersByUserId;
     }
@@ -59,6 +57,8 @@ public class AspNetUserRolesEntity {
         this.aspNetUsersByUserId = aspNetUsersByUserId;
     }
 
+    @ManyToOne
+    @JoinColumn(name = "RoleId", referencedColumnName = "Id", nullable = false)
     public AspNetRolesEntity getAspNetRolesByRoleId() {
         return aspNetRolesByRoleId;
     }

@@ -8,15 +8,12 @@ import java.io.Serializable;
 import java.util.Objects;
 
 public class AspNetUserLoginsEntityPK implements Serializable {
-    @Column(name = "LoginProvider")
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String loginProvider;
-    @Column(name = "ProviderKey")
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String providerKey;
 
+    @Column(name = "LoginProvider", nullable = false, length = -1)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public String getLoginProvider() {
         return loginProvider;
     }
@@ -25,6 +22,9 @@ public class AspNetUserLoginsEntityPK implements Serializable {
         this.loginProvider = loginProvider;
     }
 
+    @Column(name = "ProviderKey", nullable = false, length = -1)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public String getProviderKey() {
         return providerKey;
     }

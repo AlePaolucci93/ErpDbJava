@@ -7,22 +7,15 @@ import java.util.Objects;
 @Entity
 @Table(name = "Images", schema = "public", catalog = "ErpDB")
 public class ImagesEntity {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Id
-    @Column(name = "Id")
     private int id;
-    @Basic
-    @Column(name = "Name")
     private String name;
-    @Basic
-    @Column(name = "Path")
     private String path;
-    @Basic
-    @Column(name = "Timestamp")
     private String timestamp;
-    @OneToMany(mappedBy = "imagesByUserImageId")
     private Collection<AspNetUsersEntity> aspNetUsersById;
 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @Column(name = "Id", nullable = false)
     public int getId() {
         return id;
     }
@@ -31,6 +24,8 @@ public class ImagesEntity {
         this.id = id;
     }
 
+    @Basic
+    @Column(name = "Name", nullable = true, length = -1)
     public String getName() {
         return name;
     }
@@ -39,6 +34,8 @@ public class ImagesEntity {
         this.name = name;
     }
 
+    @Basic
+    @Column(name = "Path", nullable = true, length = -1)
     public String getPath() {
         return path;
     }
@@ -47,6 +44,8 @@ public class ImagesEntity {
         this.path = path;
     }
 
+    @Basic
+    @Column(name = "Timestamp", nullable = true, length = -1)
     public String getTimestamp() {
         return timestamp;
     }
@@ -68,6 +67,7 @@ public class ImagesEntity {
         return Objects.hash(id, name, path, timestamp);
     }
 
+    @OneToMany(mappedBy = "imagesByUserImageId")
     public Collection<AspNetUsersEntity> getAspNetUsersById() {
         return aspNetUsersById;
     }

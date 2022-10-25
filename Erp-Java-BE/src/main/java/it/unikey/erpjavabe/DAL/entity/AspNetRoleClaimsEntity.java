@@ -6,23 +6,15 @@ import java.util.Objects;
 @Entity
 @Table(name = "AspNetRoleClaims", schema = "public", catalog = "ErpDB")
 public class AspNetRoleClaimsEntity {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Id
-    @Column(name = "Id")
     private int id;
-    @Basic
-    @Column(name = "RoleId")
     private int roleId;
-    @Basic
-    @Column(name = "ClaimType")
     private String claimType;
-    @Basic
-    @Column(name = "ClaimValue")
     private String claimValue;
-    @ManyToOne
-    @JoinColumn(name = "RoleId", referencedColumnName = "Id", nullable = false)
     private AspNetRolesEntity aspNetRolesByRoleId;
 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @Column(name = "Id", nullable = false)
     public int getId() {
         return id;
     }
@@ -31,6 +23,8 @@ public class AspNetRoleClaimsEntity {
         this.id = id;
     }
 
+    @Basic
+    @Column(name = "RoleId", nullable = false)
     public int getRoleId() {
         return roleId;
     }
@@ -39,6 +33,8 @@ public class AspNetRoleClaimsEntity {
         this.roleId = roleId;
     }
 
+    @Basic
+    @Column(name = "ClaimType", nullable = true, length = -1)
     public String getClaimType() {
         return claimType;
     }
@@ -47,6 +43,8 @@ public class AspNetRoleClaimsEntity {
         this.claimType = claimType;
     }
 
+    @Basic
+    @Column(name = "ClaimValue", nullable = true, length = -1)
     public String getClaimValue() {
         return claimValue;
     }
@@ -68,6 +66,8 @@ public class AspNetRoleClaimsEntity {
         return Objects.hash(id, roleId, claimType, claimValue);
     }
 
+    @ManyToOne
+    @JoinColumn(name = "RoleId", referencedColumnName = "Id", nullable = false)
     public AspNetRolesEntity getAspNetRolesByRoleId() {
         return aspNetRolesByRoleId;
     }

@@ -6,23 +6,15 @@ import java.util.Objects;
 @Entity
 @Table(name = "Teaches", schema = "public", catalog = "ErpDB")
 public class TeachesEntity {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Id
-    @Column(name = "Id")
     private int id;
-    @Basic
-    @Column(name = "TeacherId")
     private int teacherId;
-    @Basic
-    @Column(name = "ModuleId")
     private int moduleId;
-    @ManyToOne
-    @JoinColumn(name = "TeacherId", referencedColumnName = "Id", nullable = false)
     private TeachersEntity teachersByTeacherId;
-    @ManyToOne
-    @JoinColumn(name = "ModuleId", referencedColumnName = "Id", nullable = false)
     private ModulesEntity modulesByModuleId;
 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @Column(name = "Id", nullable = false)
     public int getId() {
         return id;
     }
@@ -31,6 +23,8 @@ public class TeachesEntity {
         this.id = id;
     }
 
+    @Basic
+    @Column(name = "TeacherId", nullable = false)
     public int getTeacherId() {
         return teacherId;
     }
@@ -39,6 +33,8 @@ public class TeachesEntity {
         this.teacherId = teacherId;
     }
 
+    @Basic
+    @Column(name = "ModuleId", nullable = false)
     public int getModuleId() {
         return moduleId;
     }
@@ -60,6 +56,8 @@ public class TeachesEntity {
         return Objects.hash(id, teacherId, moduleId);
     }
 
+    @ManyToOne
+    @JoinColumn(name = "TeacherId", referencedColumnName = "Id", nullable = false)
     public TeachersEntity getTeachersByTeacherId() {
         return teachersByTeacherId;
     }
@@ -68,6 +66,8 @@ public class TeachesEntity {
         this.teachersByTeacherId = teachersByTeacherId;
     }
 
+    @ManyToOne
+    @JoinColumn(name = "ModuleId", referencedColumnName = "Id", nullable = false)
     public ModulesEntity getModulesByModuleId() {
         return modulesByModuleId;
     }

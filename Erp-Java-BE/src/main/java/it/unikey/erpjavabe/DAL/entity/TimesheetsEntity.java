@@ -8,30 +8,18 @@ import java.util.Objects;
 @Entity
 @Table(name = "Timesheets", schema = "public", catalog = "ErpDB")
 public class TimesheetsEntity {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Id
-    @Column(name = "Id")
     private int id;
-    @Basic
-    @Column(name = "Date")
     private Timestamp date;
-    @Basic
-    @Column(name = "IsLocked")
     private boolean isLocked;
-    @Basic
-    @Column(name = "EmployeeId")
     private Integer employeeId;
-    @Basic
-    @Column(name = "ModifiedHours")
     private Integer modifiedHours;
-    @OneToMany(mappedBy = "timesheetsByTimesheetId")
     private Collection<RecordsEntity> recordsById;
-    @OneToMany(mappedBy = "timesheetsByTimesheetId")
     private Collection<TimesheetFileEntity> timesheetFilesById;
-    @ManyToOne
-    @JoinColumn(name = "EmployeeId", referencedColumnName = "Id")
     private EmployeesEntity employeesByEmployeeId;
 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @Column(name = "Id", nullable = false)
     public int getId() {
         return id;
     }
@@ -40,6 +28,8 @@ public class TimesheetsEntity {
         this.id = id;
     }
 
+    @Basic
+    @Column(name = "Date", nullable = false)
     public Timestamp getDate() {
         return date;
     }
@@ -48,6 +38,8 @@ public class TimesheetsEntity {
         this.date = date;
     }
 
+    @Basic
+    @Column(name = "IsLocked", nullable = false)
     public boolean isLocked() {
         return isLocked;
     }
@@ -56,6 +48,8 @@ public class TimesheetsEntity {
         isLocked = locked;
     }
 
+    @Basic
+    @Column(name = "EmployeeId", nullable = true)
     public Integer getEmployeeId() {
         return employeeId;
     }
@@ -64,6 +58,8 @@ public class TimesheetsEntity {
         this.employeeId = employeeId;
     }
 
+    @Basic
+    @Column(name = "ModifiedHours", nullable = true)
     public Integer getModifiedHours() {
         return modifiedHours;
     }
@@ -85,6 +81,7 @@ public class TimesheetsEntity {
         return Objects.hash(id, date, isLocked, employeeId, modifiedHours);
     }
 
+    @OneToMany(mappedBy = "timesheetsByTimesheetId")
     public Collection<RecordsEntity> getRecordsById() {
         return recordsById;
     }
@@ -93,6 +90,7 @@ public class TimesheetsEntity {
         this.recordsById = recordsById;
     }
 
+    @OneToMany(mappedBy = "timesheetsByTimesheetId")
     public Collection<TimesheetFileEntity> getTimesheetFilesById() {
         return timesheetFilesById;
     }
@@ -101,6 +99,8 @@ public class TimesheetsEntity {
         this.timesheetFilesById = timesheetFilesById;
     }
 
+    @ManyToOne
+    @JoinColumn(name = "EmployeeId", referencedColumnName = "Id")
     public EmployeesEntity getEmployeesByEmployeeId() {
         return employeesByEmployeeId;
     }

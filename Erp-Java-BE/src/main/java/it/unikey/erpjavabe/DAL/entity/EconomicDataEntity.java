@@ -7,53 +7,25 @@ import java.util.Objects;
 @Entity
 @Table(name = "EconomicData", schema = "public", catalog = "ErpDB")
 public class EconomicDataEntity {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Id
-    @Column(name = "Id")
     private int id;
-    @Basic
-    @Column(name = "CCNL")
     private int ccnl;
-    @Basic
-    @Column(name = "StartDate")
     private Timestamp startDate;
-    @Basic
-    @Column(name = "EndDate")
     private Timestamp endDate;
-    @Basic
-    @Column(name = "ContractType")
     private Integer contractType;
-    @Basic
-    @Column(name = "MoneyRAL")
     private double moneyRal;
-    @Basic
-    @Column(name = "ContractLevel")
     private Integer contractLevel;
-    @Basic
-    @Column(name = "OneMonthSalary")
     private int oneMonthSalary;
-    @Basic
-    @Column(name = "FoodStamp")
     private int foodStamp;
-    @Basic
-    @Column(name = "FoodStampValue")
     private double foodStampValue;
-    @Basic
-    @Column(name = "Refund")
     private double refund;
-    @Basic
-    @Column(name = "TrialPeriod")
     private int trialPeriod;
-    @Basic
-    @Column(name = "EmployeeId")
     private int employeeId;
-    @Basic
-    @Column(name = "ContractLevelStage")
     private Integer contractLevelStage;
-    @ManyToOne
-    @JoinColumn(name = "EmployeeId", referencedColumnName = "Id", nullable = false)
     private EmployeesEntity employeesByEmployeeId;
 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @Column(name = "Id", nullable = false)
     public int getId() {
         return id;
     }
@@ -62,6 +34,8 @@ public class EconomicDataEntity {
         this.id = id;
     }
 
+    @Basic
+    @Column(name = "CCNL", nullable = false)
     public int getCcnl() {
         return ccnl;
     }
@@ -70,6 +44,8 @@ public class EconomicDataEntity {
         this.ccnl = ccnl;
     }
 
+    @Basic
+    @Column(name = "StartDate", nullable = false)
     public Timestamp getStartDate() {
         return startDate;
     }
@@ -78,6 +54,8 @@ public class EconomicDataEntity {
         this.startDate = startDate;
     }
 
+    @Basic
+    @Column(name = "EndDate", nullable = true)
     public Timestamp getEndDate() {
         return endDate;
     }
@@ -86,6 +64,8 @@ public class EconomicDataEntity {
         this.endDate = endDate;
     }
 
+    @Basic
+    @Column(name = "ContractType", nullable = true)
     public Integer getContractType() {
         return contractType;
     }
@@ -94,6 +74,8 @@ public class EconomicDataEntity {
         this.contractType = contractType;
     }
 
+    @Basic
+    @Column(name = "MoneyRAL", nullable = false, precision = 0)
     public double getMoneyRal() {
         return moneyRal;
     }
@@ -102,6 +84,8 @@ public class EconomicDataEntity {
         this.moneyRal = moneyRal;
     }
 
+    @Basic
+    @Column(name = "ContractLevel", nullable = true)
     public Integer getContractLevel() {
         return contractLevel;
     }
@@ -110,6 +94,8 @@ public class EconomicDataEntity {
         this.contractLevel = contractLevel;
     }
 
+    @Basic
+    @Column(name = "OneMonthSalary", nullable = false)
     public int getOneMonthSalary() {
         return oneMonthSalary;
     }
@@ -118,6 +104,8 @@ public class EconomicDataEntity {
         this.oneMonthSalary = oneMonthSalary;
     }
 
+    @Basic
+    @Column(name = "FoodStamp", nullable = false)
     public int getFoodStamp() {
         return foodStamp;
     }
@@ -126,6 +114,8 @@ public class EconomicDataEntity {
         this.foodStamp = foodStamp;
     }
 
+    @Basic
+    @Column(name = "FoodStampValue", nullable = false, precision = 0)
     public double getFoodStampValue() {
         return foodStampValue;
     }
@@ -134,6 +124,8 @@ public class EconomicDataEntity {
         this.foodStampValue = foodStampValue;
     }
 
+    @Basic
+    @Column(name = "Refund", nullable = false, precision = 0)
     public double getRefund() {
         return refund;
     }
@@ -142,6 +134,8 @@ public class EconomicDataEntity {
         this.refund = refund;
     }
 
+    @Basic
+    @Column(name = "TrialPeriod", nullable = false)
     public int getTrialPeriod() {
         return trialPeriod;
     }
@@ -150,6 +144,8 @@ public class EconomicDataEntity {
         this.trialPeriod = trialPeriod;
     }
 
+    @Basic
+    @Column(name = "EmployeeId", nullable = false)
     public int getEmployeeId() {
         return employeeId;
     }
@@ -158,6 +154,8 @@ public class EconomicDataEntity {
         this.employeeId = employeeId;
     }
 
+    @Basic
+    @Column(name = "ContractLevelStage", nullable = true)
     public Integer getContractLevelStage() {
         return contractLevelStage;
     }
@@ -179,6 +177,8 @@ public class EconomicDataEntity {
         return Objects.hash(id, ccnl, startDate, endDate, contractType, moneyRal, contractLevel, oneMonthSalary, foodStamp, foodStampValue, refund, trialPeriod, employeeId, contractLevelStage);
     }
 
+    @ManyToOne
+    @JoinColumn(name = "EmployeeId", referencedColumnName = "Id", nullable = false)
     public EmployeesEntity getEmployeesByEmployeeId() {
         return employeesByEmployeeId;
     }

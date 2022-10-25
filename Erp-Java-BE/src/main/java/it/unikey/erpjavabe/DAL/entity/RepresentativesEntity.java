@@ -6,32 +6,18 @@ import java.util.Objects;
 @Entity
 @Table(name = "Representatives", schema = "public", catalog = "ErpDB")
 public class RepresentativesEntity {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Id
-    @Column(name = "Id")
     private int id;
-    @Basic
-    @Column(name = "Name")
     private String name;
-    @Basic
-    @Column(name = "Email")
     private String email;
-    @Basic
-    @Column(name = "Phone")
     private String phone;
-    @Basic
-    @Column(name = "Role")
     private String role;
-    @Basic
-    @Column(name = "CustomerId")
     private Integer customerId;
-    @Basic
-    @Column(name = "IsDeleted")
     private boolean isDeleted;
-    @ManyToOne
-    @JoinColumn(name = "CustomerId", referencedColumnName = "Id")
     private CustomersEntity customersByCustomerId;
 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @Column(name = "Id", nullable = false)
     public int getId() {
         return id;
     }
@@ -40,6 +26,8 @@ public class RepresentativesEntity {
         this.id = id;
     }
 
+    @Basic
+    @Column(name = "Name", nullable = true, length = -1)
     public String getName() {
         return name;
     }
@@ -48,6 +36,8 @@ public class RepresentativesEntity {
         this.name = name;
     }
 
+    @Basic
+    @Column(name = "Email", nullable = true, length = -1)
     public String getEmail() {
         return email;
     }
@@ -56,6 +46,8 @@ public class RepresentativesEntity {
         this.email = email;
     }
 
+    @Basic
+    @Column(name = "Phone", nullable = true, length = -1)
     public String getPhone() {
         return phone;
     }
@@ -64,6 +56,8 @@ public class RepresentativesEntity {
         this.phone = phone;
     }
 
+    @Basic
+    @Column(name = "Role", nullable = true, length = -1)
     public String getRole() {
         return role;
     }
@@ -72,6 +66,8 @@ public class RepresentativesEntity {
         this.role = role;
     }
 
+    @Basic
+    @Column(name = "CustomerId", nullable = true)
     public Integer getCustomerId() {
         return customerId;
     }
@@ -80,6 +76,8 @@ public class RepresentativesEntity {
         this.customerId = customerId;
     }
 
+    @Basic
+    @Column(name = "IsDeleted", nullable = false)
     public boolean isDeleted() {
         return isDeleted;
     }
@@ -101,6 +99,8 @@ public class RepresentativesEntity {
         return Objects.hash(id, name, email, phone, role, customerId, isDeleted);
     }
 
+    @ManyToOne
+    @JoinColumn(name = "CustomerId", referencedColumnName = "Id")
     public CustomersEntity getCustomersByCustomerId() {
         return customersByCustomerId;
     }

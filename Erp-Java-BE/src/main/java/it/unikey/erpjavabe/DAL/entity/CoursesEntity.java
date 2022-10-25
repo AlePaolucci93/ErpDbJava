@@ -8,28 +8,17 @@ import java.util.Objects;
 @Entity
 @Table(name = "Courses", schema = "public", catalog = "ErpDB")
 public class CoursesEntity {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Id
-    @Column(name = "Id")
     private int id;
-    @Basic
-    @Column(name = "Name")
     private String name;
-    @Basic
-    @Column(name = "StartDate")
     private Timestamp startDate;
-    @Basic
-    @Column(name = "EndDate")
     private Timestamp endDate;
-    @Basic
-    @Column(name = "AverageLearnerRate")
     private double averageLearnerRate;
-    @Basic
-    @Column(name = "Placement")
     private int placement;
-    @OneToMany(mappedBy = "coursesByCourseDaoId")
     private Collection<ModulesEntity> modulesById;
 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @Column(name = "Id", nullable = false)
     public int getId() {
         return id;
     }
@@ -38,6 +27,8 @@ public class CoursesEntity {
         this.id = id;
     }
 
+    @Basic
+    @Column(name = "Name", nullable = false, length = -1)
     public String getName() {
         return name;
     }
@@ -46,6 +37,8 @@ public class CoursesEntity {
         this.name = name;
     }
 
+    @Basic
+    @Column(name = "StartDate", nullable = false)
     public Timestamp getStartDate() {
         return startDate;
     }
@@ -54,6 +47,8 @@ public class CoursesEntity {
         this.startDate = startDate;
     }
 
+    @Basic
+    @Column(name = "EndDate", nullable = false)
     public Timestamp getEndDate() {
         return endDate;
     }
@@ -62,6 +57,8 @@ public class CoursesEntity {
         this.endDate = endDate;
     }
 
+    @Basic
+    @Column(name = "AverageLearnerRate", nullable = false, precision = 0)
     public double getAverageLearnerRate() {
         return averageLearnerRate;
     }
@@ -70,6 +67,8 @@ public class CoursesEntity {
         this.averageLearnerRate = averageLearnerRate;
     }
 
+    @Basic
+    @Column(name = "Placement", nullable = false)
     public int getPlacement() {
         return placement;
     }
@@ -91,6 +90,7 @@ public class CoursesEntity {
         return Objects.hash(id, name, startDate, endDate, averageLearnerRate, placement);
     }
 
+    @OneToMany(mappedBy = "coursesByCourseDaoId")
     public Collection<ModulesEntity> getModulesById() {
         return modulesById;
     }

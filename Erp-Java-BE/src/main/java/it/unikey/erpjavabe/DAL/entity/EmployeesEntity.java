@@ -8,58 +8,30 @@ import java.util.Objects;
 @Entity
 @Table(name = "Employees", schema = "public", catalog = "ErpDB")
 public class EmployeesEntity {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Id
-    @Column(name = "Id")
     private int id;
-    @Basic
-    @Column(name = "BirthDate")
     private Timestamp birthDate;
-    @Basic
-    @Column(name = "BirthPlace")
     private String birthPlace;
-    @Basic
-    @Column(name = "IBAN")
     private String iban;
-    @Basic
-    @Column(name = "IdentityCard")
     private String identityCard;
-    @Basic
-    @Column(name = "FiscalCode")
     private String fiscalCode;
-    @Basic
-    @Column(name = "Gender")
     private String gender;
-    @Basic
-    @Column(name = "HireDate")
     private Timestamp hireDate;
-    @Basic
-    @Column(name = "EndOfEmployment")
     private Timestamp endOfEmployment;
-    @OneToMany(mappedBy = "employeesByEmployeeId")
     private Collection<AddressesEntity> addressesById;
-    @OneToMany(mappedBy = "employeesByEmployeeId")
     private Collection<EconomicDataEntity> economicDataById;
-    @OneToMany(mappedBy = "employeesByEmployeeId")
     private Collection<EmployeeAssetsEntity> employeeAssetsById;
-    @OneToMany(mappedBy = "employeesByEmployeeId")
     private Collection<EmployeeCvsEntity> employeeCvsById;
-    @OneToMany(mappedBy = "employeesByEmployeeId")
     private Collection<EmployeePaySlipEntity> employeePaySlipsById;
-    @OneToOne
-    @JoinColumn(name = "Id", referencedColumnName = "Id", nullable = false)
     private AspNetUsersEntity aspNetUsersById;
-    @OneToMany(mappedBy = "employeesByEmployeeDaoId")
     private Collection<FilePathsEntity> filePathsById;
-    @OneToMany(mappedBy = "employeesByEmployeeId")
     private Collection<InvoicesEntity> invoicesById;
-    @OneToMany(mappedBy = "employeesByEmployeeId")
     private Collection<ProjectsAssignmentEntity> projectsAssignmentsById;
-    @OneToMany(mappedBy = "employeesByEmployeeId")
     private Collection<PropositionsEntity> propositionsById;
-    @OneToMany(mappedBy = "employeesByEmployeeId")
     private Collection<TimesheetsEntity> timesheetsById;
 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @Column(name = "Id", nullable = false)
     public int getId() {
         return id;
     }
@@ -68,6 +40,8 @@ public class EmployeesEntity {
         this.id = id;
     }
 
+    @Basic
+    @Column(name = "BirthDate", nullable = false)
     public Timestamp getBirthDate() {
         return birthDate;
     }
@@ -76,6 +50,8 @@ public class EmployeesEntity {
         this.birthDate = birthDate;
     }
 
+    @Basic
+    @Column(name = "BirthPlace", nullable = true, length = -1)
     public String getBirthPlace() {
         return birthPlace;
     }
@@ -84,6 +60,8 @@ public class EmployeesEntity {
         this.birthPlace = birthPlace;
     }
 
+    @Basic
+    @Column(name = "IBAN", nullable = true, length = -1)
     public String getIban() {
         return iban;
     }
@@ -92,6 +70,8 @@ public class EmployeesEntity {
         this.iban = iban;
     }
 
+    @Basic
+    @Column(name = "IdentityCard", nullable = true, length = -1)
     public String getIdentityCard() {
         return identityCard;
     }
@@ -100,6 +80,8 @@ public class EmployeesEntity {
         this.identityCard = identityCard;
     }
 
+    @Basic
+    @Column(name = "FiscalCode", nullable = true, length = -1)
     public String getFiscalCode() {
         return fiscalCode;
     }
@@ -108,6 +90,8 @@ public class EmployeesEntity {
         this.fiscalCode = fiscalCode;
     }
 
+    @Basic
+    @Column(name = "Gender", nullable = false, length = -1)
     public String getGender() {
         return gender;
     }
@@ -116,6 +100,8 @@ public class EmployeesEntity {
         this.gender = gender;
     }
 
+    @Basic
+    @Column(name = "HireDate", nullable = false)
     public Timestamp getHireDate() {
         return hireDate;
     }
@@ -124,6 +110,8 @@ public class EmployeesEntity {
         this.hireDate = hireDate;
     }
 
+    @Basic
+    @Column(name = "EndOfEmployment", nullable = true)
     public Timestamp getEndOfEmployment() {
         return endOfEmployment;
     }
@@ -145,6 +133,7 @@ public class EmployeesEntity {
         return Objects.hash(id, birthDate, birthPlace, iban, identityCard, fiscalCode, gender, hireDate, endOfEmployment);
     }
 
+    @OneToMany(mappedBy = "employeesByEmployeeId")
     public Collection<AddressesEntity> getAddressesById() {
         return addressesById;
     }
@@ -153,6 +142,7 @@ public class EmployeesEntity {
         this.addressesById = addressesById;
     }
 
+    @OneToMany(mappedBy = "employeesByEmployeeId")
     public Collection<EconomicDataEntity> getEconomicDataById() {
         return economicDataById;
     }
@@ -161,6 +151,7 @@ public class EmployeesEntity {
         this.economicDataById = economicDataById;
     }
 
+    @OneToMany(mappedBy = "employeesByEmployeeId")
     public Collection<EmployeeAssetsEntity> getEmployeeAssetsById() {
         return employeeAssetsById;
     }
@@ -169,6 +160,7 @@ public class EmployeesEntity {
         this.employeeAssetsById = employeeAssetsById;
     }
 
+    @OneToMany(mappedBy = "employeesByEmployeeId")
     public Collection<EmployeeCvsEntity> getEmployeeCvsById() {
         return employeeCvsById;
     }
@@ -177,6 +169,7 @@ public class EmployeesEntity {
         this.employeeCvsById = employeeCvsById;
     }
 
+    @OneToMany(mappedBy = "employeesByEmployeeId")
     public Collection<EmployeePaySlipEntity> getEmployeePaySlipsById() {
         return employeePaySlipsById;
     }
@@ -185,6 +178,8 @@ public class EmployeesEntity {
         this.employeePaySlipsById = employeePaySlipsById;
     }
 
+    @OneToOne
+    @JoinColumn(name = "Id", referencedColumnName = "Id", nullable = false)
     public AspNetUsersEntity getAspNetUsersById() {
         return aspNetUsersById;
     }
@@ -193,6 +188,7 @@ public class EmployeesEntity {
         this.aspNetUsersById = aspNetUsersById;
     }
 
+    @OneToMany(mappedBy = "employeesByEmployeeDaoId")
     public Collection<FilePathsEntity> getFilePathsById() {
         return filePathsById;
     }
@@ -201,6 +197,7 @@ public class EmployeesEntity {
         this.filePathsById = filePathsById;
     }
 
+    @OneToMany(mappedBy = "employeesByEmployeeId")
     public Collection<InvoicesEntity> getInvoicesById() {
         return invoicesById;
     }
@@ -209,6 +206,7 @@ public class EmployeesEntity {
         this.invoicesById = invoicesById;
     }
 
+    @OneToMany(mappedBy = "employeesByEmployeeId")
     public Collection<ProjectsAssignmentEntity> getProjectsAssignmentsById() {
         return projectsAssignmentsById;
     }
@@ -217,6 +215,7 @@ public class EmployeesEntity {
         this.projectsAssignmentsById = projectsAssignmentsById;
     }
 
+    @OneToMany(mappedBy = "employeesByEmployeeId")
     public Collection<PropositionsEntity> getPropositionsById() {
         return propositionsById;
     }
@@ -225,6 +224,7 @@ public class EmployeesEntity {
         this.propositionsById = propositionsById;
     }
 
+    @OneToMany(mappedBy = "employeesByEmployeeId")
     public Collection<TimesheetsEntity> getTimesheetsById() {
         return timesheetsById;
     }

@@ -6,23 +6,15 @@ import java.util.Objects;
 @Entity
 @Table(name = "ModuleRelations", schema = "public", catalog = "ErpDB")
 public class ModuleRelationsEntity {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Id
-    @Column(name = "Id")
     private int id;
-    @Basic
-    @Column(name = "CurrentModuleId")
     private int currentModuleId;
-    @Basic
-    @Column(name = "ParentModuleId")
     private Integer parentModuleId;
-    @ManyToOne
-    @JoinColumn(name = "CurrentModuleId", referencedColumnName = "Id", nullable = false)
     private ModulesEntity modulesByCurrentModuleId;
-    @ManyToOne
-    @JoinColumn(name = "ParentModuleId", referencedColumnName = "Id")
     private ModulesEntity modulesByParentModuleId;
 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @Column(name = "Id", nullable = false)
     public int getId() {
         return id;
     }
@@ -31,6 +23,8 @@ public class ModuleRelationsEntity {
         this.id = id;
     }
 
+    @Basic
+    @Column(name = "CurrentModuleId", nullable = false)
     public int getCurrentModuleId() {
         return currentModuleId;
     }
@@ -39,6 +33,8 @@ public class ModuleRelationsEntity {
         this.currentModuleId = currentModuleId;
     }
 
+    @Basic
+    @Column(name = "ParentModuleId", nullable = true)
     public Integer getParentModuleId() {
         return parentModuleId;
     }
@@ -60,6 +56,8 @@ public class ModuleRelationsEntity {
         return Objects.hash(id, currentModuleId, parentModuleId);
     }
 
+    @ManyToOne
+    @JoinColumn(name = "CurrentModuleId", referencedColumnName = "Id", nullable = false)
     public ModulesEntity getModulesByCurrentModuleId() {
         return modulesByCurrentModuleId;
     }
@@ -68,6 +66,8 @@ public class ModuleRelationsEntity {
         this.modulesByCurrentModuleId = modulesByCurrentModuleId;
     }
 
+    @ManyToOne
+    @JoinColumn(name = "ParentModuleId", referencedColumnName = "Id")
     public ModulesEntity getModulesByParentModuleId() {
         return modulesByParentModuleId;
     }

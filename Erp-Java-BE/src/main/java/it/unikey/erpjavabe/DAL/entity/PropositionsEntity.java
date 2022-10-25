@@ -7,44 +7,22 @@ import java.util.Objects;
 @Entity
 @Table(name = "Propositions", schema = "public", catalog = "ErpDB")
 public class PropositionsEntity {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Id
-    @Column(name = "Id")
     private int id;
-    @Basic
-    @Column(name = "EmployeeId")
     private int employeeId;
-    @Basic
-    @Column(name = "CustomerId")
     private int customerId;
-    @Basic
-    @Column(name = "ManagerId")
     private int managerId;
-    @Basic
-    @Column(name = "PropositionDate")
     private Timestamp propositionDate;
-    @Basic
-    @Column(name = "InterviewDate")
     private Timestamp interviewDate;
-    @Basic
-    @Column(name = "State")
     private boolean state;
-    @Basic
-    @Column(name = "PropositionSale")
     private double propositionSale;
-    @Basic
-    @Column(name = "Remarks")
     private String remarks;
-    @ManyToOne
-    @JoinColumn(name = "EmployeeId", referencedColumnName = "Id", nullable = false)
     private EmployeesEntity employeesByEmployeeId;
-    @ManyToOne
-    @JoinColumn(name = "CustomerId", referencedColumnName = "Id", nullable = false)
     private CustomersEntity customersByCustomerId;
-    @ManyToOne
-    @JoinColumn(name = "ManagerId", referencedColumnName = "Id", nullable = false)
     private ManagersEntity managersByManagerId;
 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @Column(name = "Id", nullable = false)
     public int getId() {
         return id;
     }
@@ -53,6 +31,8 @@ public class PropositionsEntity {
         this.id = id;
     }
 
+    @Basic
+    @Column(name = "EmployeeId", nullable = false)
     public int getEmployeeId() {
         return employeeId;
     }
@@ -61,6 +41,8 @@ public class PropositionsEntity {
         this.employeeId = employeeId;
     }
 
+    @Basic
+    @Column(name = "CustomerId", nullable = false)
     public int getCustomerId() {
         return customerId;
     }
@@ -69,6 +51,8 @@ public class PropositionsEntity {
         this.customerId = customerId;
     }
 
+    @Basic
+    @Column(name = "ManagerId", nullable = false)
     public int getManagerId() {
         return managerId;
     }
@@ -77,6 +61,8 @@ public class PropositionsEntity {
         this.managerId = managerId;
     }
 
+    @Basic
+    @Column(name = "PropositionDate", nullable = false)
     public Timestamp getPropositionDate() {
         return propositionDate;
     }
@@ -85,6 +71,8 @@ public class PropositionsEntity {
         this.propositionDate = propositionDate;
     }
 
+    @Basic
+    @Column(name = "InterviewDate", nullable = false)
     public Timestamp getInterviewDate() {
         return interviewDate;
     }
@@ -93,6 +81,8 @@ public class PropositionsEntity {
         this.interviewDate = interviewDate;
     }
 
+    @Basic
+    @Column(name = "State", nullable = false)
     public boolean isState() {
         return state;
     }
@@ -101,6 +91,8 @@ public class PropositionsEntity {
         this.state = state;
     }
 
+    @Basic
+    @Column(name = "PropositionSale", nullable = false, precision = 0)
     public double getPropositionSale() {
         return propositionSale;
     }
@@ -109,6 +101,8 @@ public class PropositionsEntity {
         this.propositionSale = propositionSale;
     }
 
+    @Basic
+    @Column(name = "Remarks", nullable = true, length = -1)
     public String getRemarks() {
         return remarks;
     }
@@ -130,6 +124,8 @@ public class PropositionsEntity {
         return Objects.hash(id, employeeId, customerId, managerId, propositionDate, interviewDate, state, propositionSale, remarks);
     }
 
+    @ManyToOne
+    @JoinColumn(name = "EmployeeId", referencedColumnName = "Id", nullable = false)
     public EmployeesEntity getEmployeesByEmployeeId() {
         return employeesByEmployeeId;
     }
@@ -138,6 +134,8 @@ public class PropositionsEntity {
         this.employeesByEmployeeId = employeesByEmployeeId;
     }
 
+    @ManyToOne
+    @JoinColumn(name = "CustomerId", referencedColumnName = "Id", nullable = false)
     public CustomersEntity getCustomersByCustomerId() {
         return customersByCustomerId;
     }
@@ -146,6 +144,8 @@ public class PropositionsEntity {
         this.customersByCustomerId = customersByCustomerId;
     }
 
+    @ManyToOne
+    @JoinColumn(name = "ManagerId", referencedColumnName = "Id", nullable = false)
     public ManagersEntity getManagersByManagerId() {
         return managersByManagerId;
     }

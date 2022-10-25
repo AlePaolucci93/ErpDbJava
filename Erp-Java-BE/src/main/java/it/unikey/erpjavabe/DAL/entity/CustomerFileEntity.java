@@ -7,23 +7,15 @@ import java.util.Objects;
 @Entity
 @Table(name = "CustomerFile", schema = "public", catalog = "ErpDB")
 public class CustomerFileEntity {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Id
-    @Column(name = "Id")
     private int id;
-    @Basic
-    @Column(name = "Path")
     private String path;
-    @Basic
-    @Column(name = "DateOfInsertion")
     private Timestamp dateOfInsertion;
-    @Basic
-    @Column(name = "CustomerId")
     private Integer customerId;
-    @ManyToOne
-    @JoinColumn(name = "CustomerId", referencedColumnName = "Id")
     private CustomersEntity customersByCustomerId;
 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @Column(name = "Id", nullable = false)
     public int getId() {
         return id;
     }
@@ -32,6 +24,8 @@ public class CustomerFileEntity {
         this.id = id;
     }
 
+    @Basic
+    @Column(name = "Path", nullable = true, length = -1)
     public String getPath() {
         return path;
     }
@@ -40,6 +34,8 @@ public class CustomerFileEntity {
         this.path = path;
     }
 
+    @Basic
+    @Column(name = "DateOfInsertion", nullable = false)
     public Timestamp getDateOfInsertion() {
         return dateOfInsertion;
     }
@@ -48,6 +44,8 @@ public class CustomerFileEntity {
         this.dateOfInsertion = dateOfInsertion;
     }
 
+    @Basic
+    @Column(name = "CustomerId", nullable = true)
     public Integer getCustomerId() {
         return customerId;
     }
@@ -69,6 +67,8 @@ public class CustomerFileEntity {
         return Objects.hash(id, path, dateOfInsertion, customerId);
     }
 
+    @ManyToOne
+    @JoinColumn(name = "CustomerId", referencedColumnName = "Id")
     public CustomersEntity getCustomersByCustomerId() {
         return customersByCustomerId;
     }

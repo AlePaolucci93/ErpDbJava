@@ -7,32 +7,18 @@ import java.util.Objects;
 @Entity
 @Table(name = "EmployeeAssets", schema = "public", catalog = "ErpDB")
 public class EmployeeAssetsEntity {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Id
-    @Column(name = "Id")
     private int id;
-    @Basic
-    @Column(name = "EmployeeId")
     private int employeeId;
-    @Basic
-    @Column(name = "AssetId")
     private int assetId;
-    @Basic
-    @Column(name = "DeliveryDeviceDate")
     private Timestamp deliveryDeviceDate;
-    @Basic
-    @Column(name = "ReturnDeviceDate")
     private Timestamp returnDeviceDate;
-    @Basic
-    @Column(name = "IsDeleted")
     private boolean isDeleted;
-    @ManyToOne
-    @JoinColumn(name = "EmployeeId", referencedColumnName = "Id", nullable = false)
     private EmployeesEntity employeesByEmployeeId;
-    @ManyToOne
-    @JoinColumn(name = "AssetId", referencedColumnName = "Id", nullable = false)
     private AssetsEntity assetsByAssetId;
 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @Column(name = "Id", nullable = false)
     public int getId() {
         return id;
     }
@@ -41,6 +27,8 @@ public class EmployeeAssetsEntity {
         this.id = id;
     }
 
+    @Basic
+    @Column(name = "EmployeeId", nullable = false)
     public int getEmployeeId() {
         return employeeId;
     }
@@ -49,6 +37,8 @@ public class EmployeeAssetsEntity {
         this.employeeId = employeeId;
     }
 
+    @Basic
+    @Column(name = "AssetId", nullable = false)
     public int getAssetId() {
         return assetId;
     }
@@ -57,6 +47,8 @@ public class EmployeeAssetsEntity {
         this.assetId = assetId;
     }
 
+    @Basic
+    @Column(name = "DeliveryDeviceDate", nullable = false)
     public Timestamp getDeliveryDeviceDate() {
         return deliveryDeviceDate;
     }
@@ -65,6 +57,8 @@ public class EmployeeAssetsEntity {
         this.deliveryDeviceDate = deliveryDeviceDate;
     }
 
+    @Basic
+    @Column(name = "ReturnDeviceDate", nullable = true)
     public Timestamp getReturnDeviceDate() {
         return returnDeviceDate;
     }
@@ -73,6 +67,8 @@ public class EmployeeAssetsEntity {
         this.returnDeviceDate = returnDeviceDate;
     }
 
+    @Basic
+    @Column(name = "IsDeleted", nullable = false)
     public boolean isDeleted() {
         return isDeleted;
     }
@@ -94,6 +90,8 @@ public class EmployeeAssetsEntity {
         return Objects.hash(id, employeeId, assetId, deliveryDeviceDate, returnDeviceDate, isDeleted);
     }
 
+    @ManyToOne
+    @JoinColumn(name = "EmployeeId", referencedColumnName = "Id", nullable = false)
     public EmployeesEntity getEmployeesByEmployeeId() {
         return employeesByEmployeeId;
     }
@@ -102,6 +100,8 @@ public class EmployeeAssetsEntity {
         this.employeesByEmployeeId = employeesByEmployeeId;
     }
 
+    @ManyToOne
+    @JoinColumn(name = "AssetId", referencedColumnName = "Id", nullable = false)
     public AssetsEntity getAssetsByAssetId() {
         return assetsByAssetId;
     }

@@ -6,26 +6,16 @@ import java.util.Objects;
 @Entity
 @Table(name = "TimesheetFile", schema = "public", catalog = "ErpDB")
 public class TimesheetFileEntity {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Id
-    @Column(name = "Id")
     private int id;
-    @Basic
-    @Column(name = "FileName")
     private String fileName;
-    @Basic
-    @Column(name = "PathUri")
     private String pathUri;
-    @Basic
-    @Column(name = "TimesheetId")
     private int timesheetId;
-    @Basic
-    @Column(name = "OriginalFileName")
     private String originalFileName;
-    @ManyToOne
-    @JoinColumn(name = "TimesheetId", referencedColumnName = "Id", nullable = false)
     private TimesheetsEntity timesheetsByTimesheetId;
 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @Column(name = "Id", nullable = false)
     public int getId() {
         return id;
     }
@@ -34,6 +24,8 @@ public class TimesheetFileEntity {
         this.id = id;
     }
 
+    @Basic
+    @Column(name = "FileName", nullable = true, length = -1)
     public String getFileName() {
         return fileName;
     }
@@ -42,6 +34,8 @@ public class TimesheetFileEntity {
         this.fileName = fileName;
     }
 
+    @Basic
+    @Column(name = "PathUri", nullable = true, length = -1)
     public String getPathUri() {
         return pathUri;
     }
@@ -50,6 +44,8 @@ public class TimesheetFileEntity {
         this.pathUri = pathUri;
     }
 
+    @Basic
+    @Column(name = "TimesheetId", nullable = false)
     public int getTimesheetId() {
         return timesheetId;
     }
@@ -58,6 +54,8 @@ public class TimesheetFileEntity {
         this.timesheetId = timesheetId;
     }
 
+    @Basic
+    @Column(name = "OriginalFileName", nullable = true, length = -1)
     public String getOriginalFileName() {
         return originalFileName;
     }
@@ -79,6 +77,8 @@ public class TimesheetFileEntity {
         return Objects.hash(id, fileName, pathUri, timesheetId, originalFileName);
     }
 
+    @ManyToOne
+    @JoinColumn(name = "TimesheetId", referencedColumnName = "Id", nullable = false)
     public TimesheetsEntity getTimesheetsByTimesheetId() {
         return timesheetsByTimesheetId;
     }

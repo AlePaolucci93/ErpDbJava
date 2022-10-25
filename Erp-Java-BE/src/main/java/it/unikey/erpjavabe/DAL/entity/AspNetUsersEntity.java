@@ -8,88 +8,39 @@ import java.util.Objects;
 @Entity
 @Table(name = "AspNetUsers", schema = "public", catalog = "ErpDB")
 public class AspNetUsersEntity {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Id
-    @Column(name = "Id")
     private int id;
-    @Basic
-    @Column(name = "Name")
     private String name;
-    @Basic
-    @Column(name = "Lastname")
     private String lastname;
-    @Basic
-    @Column(name = "AccountType")
     private int accountType;
-    @Basic
-    @Column(name = "UserImageId")
     private Integer userImageId;
-    @Basic
-    @Column(name = "IsDeleted")
     private boolean isDeleted;
-    @Basic
-    @Column(name = "LastLoginDate")
     private Timestamp lastLoginDate;
-    @Basic
-    @Column(name = "UserName")
     private String userName;
-    @Basic
-    @Column(name = "NormalizedUserName")
     private String normalizedUserName;
-    @Basic
-    @Column(name = "Email")
     private String email;
-    @Basic
-    @Column(name = "NormalizedEmail")
     private String normalizedEmail;
-    @Basic
-    @Column(name = "EmailConfirmed")
     private boolean emailConfirmed;
-    @Basic
-    @Column(name = "PasswordHash")
     private String passwordHash;
-    @Basic
-    @Column(name = "SecurityStamp")
     private String securityStamp;
-    @Basic
-    @Column(name = "ConcurrencyStamp")
     private String concurrencyStamp;
-    @Basic
-    @Column(name = "PhoneNumber")
     private String phoneNumber;
-    @Basic
-    @Column(name = "PhoneNumberConfirmed")
     private boolean phoneNumberConfirmed;
-    @Basic
-    @Column(name = "TwoFactorEnabled")
     private boolean twoFactorEnabled;
-    @Basic
-    @Column(name = "LockoutEnd")
     private Object lockoutEnd;
-    @Basic
-    @Column(name = "LockoutEnabled")
     private boolean lockoutEnabled;
-    @Basic
-    @Column(name = "AccessFailedCount")
     private int accessFailedCount;
-    @OneToOne(mappedBy = "aspNetUsersById")
     private AdministratorsEntity administratorsById;
-    @OneToMany(mappedBy = "aspNetUsersByUserId")
     private Collection<AspNetUserClaimsEntity> aspNetUserClaimsById;
-    @OneToMany(mappedBy = "aspNetUsersByUserId")
     private Collection<AspNetUserLoginsEntity> aspNetUserLoginsById;
-    @OneToMany(mappedBy = "aspNetUsersByUserId")
     private Collection<AspNetUserRolesEntity> aspNetUserRolesById;
-    @OneToMany(mappedBy = "aspNetUsersByUserId")
     private Collection<AspNetUserTokensEntity> aspNetUserTokensById;
-    @ManyToOne
-    @JoinColumn(name = "UserImageId", referencedColumnName = "Id")
     private ImagesEntity imagesByUserImageId;
-    @OneToOne(mappedBy = "aspNetUsersById")
     private EmployeesEntity employeesById;
-    @OneToOne(mappedBy = "aspNetUsersById")
     private ManagersEntity managersById;
 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @Column(name = "Id", nullable = false)
     public int getId() {
         return id;
     }
@@ -98,6 +49,8 @@ public class AspNetUsersEntity {
         this.id = id;
     }
 
+    @Basic
+    @Column(name = "Name", nullable = true, length = -1)
     public String getName() {
         return name;
     }
@@ -106,6 +59,8 @@ public class AspNetUsersEntity {
         this.name = name;
     }
 
+    @Basic
+    @Column(name = "Lastname", nullable = true, length = -1)
     public String getLastname() {
         return lastname;
     }
@@ -114,6 +69,8 @@ public class AspNetUsersEntity {
         this.lastname = lastname;
     }
 
+    @Basic
+    @Column(name = "AccountType", nullable = false)
     public int getAccountType() {
         return accountType;
     }
@@ -122,6 +79,8 @@ public class AspNetUsersEntity {
         this.accountType = accountType;
     }
 
+    @Basic
+    @Column(name = "UserImageId", nullable = true)
     public Integer getUserImageId() {
         return userImageId;
     }
@@ -130,6 +89,8 @@ public class AspNetUsersEntity {
         this.userImageId = userImageId;
     }
 
+    @Basic
+    @Column(name = "IsDeleted", nullable = false)
     public boolean isDeleted() {
         return isDeleted;
     }
@@ -138,6 +99,8 @@ public class AspNetUsersEntity {
         isDeleted = deleted;
     }
 
+    @Basic
+    @Column(name = "LastLoginDate", nullable = false)
     public Timestamp getLastLoginDate() {
         return lastLoginDate;
     }
@@ -146,6 +109,8 @@ public class AspNetUsersEntity {
         this.lastLoginDate = lastLoginDate;
     }
 
+    @Basic
+    @Column(name = "UserName", nullable = true, length = 256)
     public String getUserName() {
         return userName;
     }
@@ -154,6 +119,8 @@ public class AspNetUsersEntity {
         this.userName = userName;
     }
 
+    @Basic
+    @Column(name = "NormalizedUserName", nullable = true, length = 256)
     public String getNormalizedUserName() {
         return normalizedUserName;
     }
@@ -162,6 +129,8 @@ public class AspNetUsersEntity {
         this.normalizedUserName = normalizedUserName;
     }
 
+    @Basic
+    @Column(name = "Email", nullable = true, length = 256)
     public String getEmail() {
         return email;
     }
@@ -170,6 +139,8 @@ public class AspNetUsersEntity {
         this.email = email;
     }
 
+    @Basic
+    @Column(name = "NormalizedEmail", nullable = true, length = 256)
     public String getNormalizedEmail() {
         return normalizedEmail;
     }
@@ -178,6 +149,8 @@ public class AspNetUsersEntity {
         this.normalizedEmail = normalizedEmail;
     }
 
+    @Basic
+    @Column(name = "EmailConfirmed", nullable = false)
     public boolean isEmailConfirmed() {
         return emailConfirmed;
     }
@@ -186,6 +159,8 @@ public class AspNetUsersEntity {
         this.emailConfirmed = emailConfirmed;
     }
 
+    @Basic
+    @Column(name = "PasswordHash", nullable = true, length = -1)
     public String getPasswordHash() {
         return passwordHash;
     }
@@ -194,6 +169,8 @@ public class AspNetUsersEntity {
         this.passwordHash = passwordHash;
     }
 
+    @Basic
+    @Column(name = "SecurityStamp", nullable = true, length = -1)
     public String getSecurityStamp() {
         return securityStamp;
     }
@@ -202,6 +179,8 @@ public class AspNetUsersEntity {
         this.securityStamp = securityStamp;
     }
 
+    @Basic
+    @Column(name = "ConcurrencyStamp", nullable = true, length = -1)
     public String getConcurrencyStamp() {
         return concurrencyStamp;
     }
@@ -210,6 +189,8 @@ public class AspNetUsersEntity {
         this.concurrencyStamp = concurrencyStamp;
     }
 
+    @Basic
+    @Column(name = "PhoneNumber", nullable = true, length = -1)
     public String getPhoneNumber() {
         return phoneNumber;
     }
@@ -218,6 +199,8 @@ public class AspNetUsersEntity {
         this.phoneNumber = phoneNumber;
     }
 
+    @Basic
+    @Column(name = "PhoneNumberConfirmed", nullable = false)
     public boolean isPhoneNumberConfirmed() {
         return phoneNumberConfirmed;
     }
@@ -226,6 +209,8 @@ public class AspNetUsersEntity {
         this.phoneNumberConfirmed = phoneNumberConfirmed;
     }
 
+    @Basic
+    @Column(name = "TwoFactorEnabled", nullable = false)
     public boolean isTwoFactorEnabled() {
         return twoFactorEnabled;
     }
@@ -234,6 +219,8 @@ public class AspNetUsersEntity {
         this.twoFactorEnabled = twoFactorEnabled;
     }
 
+    @Basic
+    @Column(name = "LockoutEnd", nullable = true)
     public Object getLockoutEnd() {
         return lockoutEnd;
     }
@@ -242,6 +229,8 @@ public class AspNetUsersEntity {
         this.lockoutEnd = lockoutEnd;
     }
 
+    @Basic
+    @Column(name = "LockoutEnabled", nullable = false)
     public boolean isLockoutEnabled() {
         return lockoutEnabled;
     }
@@ -250,6 +239,8 @@ public class AspNetUsersEntity {
         this.lockoutEnabled = lockoutEnabled;
     }
 
+    @Basic
+    @Column(name = "AccessFailedCount", nullable = false)
     public int getAccessFailedCount() {
         return accessFailedCount;
     }
@@ -271,6 +262,7 @@ public class AspNetUsersEntity {
         return Objects.hash(id, name, lastname, accountType, userImageId, isDeleted, lastLoginDate, userName, normalizedUserName, email, normalizedEmail, emailConfirmed, passwordHash, securityStamp, concurrencyStamp, phoneNumber, phoneNumberConfirmed, twoFactorEnabled, lockoutEnd, lockoutEnabled, accessFailedCount);
     }
 
+    @OneToOne(mappedBy = "aspNetUsersById")
     public AdministratorsEntity getAdministratorsById() {
         return administratorsById;
     }
@@ -279,6 +271,7 @@ public class AspNetUsersEntity {
         this.administratorsById = administratorsById;
     }
 
+    @OneToMany(mappedBy = "aspNetUsersByUserId")
     public Collection<AspNetUserClaimsEntity> getAspNetUserClaimsById() {
         return aspNetUserClaimsById;
     }
@@ -287,6 +280,7 @@ public class AspNetUsersEntity {
         this.aspNetUserClaimsById = aspNetUserClaimsById;
     }
 
+    @OneToMany(mappedBy = "aspNetUsersByUserId")
     public Collection<AspNetUserLoginsEntity> getAspNetUserLoginsById() {
         return aspNetUserLoginsById;
     }
@@ -295,6 +289,7 @@ public class AspNetUsersEntity {
         this.aspNetUserLoginsById = aspNetUserLoginsById;
     }
 
+    @OneToMany(mappedBy = "aspNetUsersByUserId")
     public Collection<AspNetUserRolesEntity> getAspNetUserRolesById() {
         return aspNetUserRolesById;
     }
@@ -303,6 +298,7 @@ public class AspNetUsersEntity {
         this.aspNetUserRolesById = aspNetUserRolesById;
     }
 
+    @OneToMany(mappedBy = "aspNetUsersByUserId")
     public Collection<AspNetUserTokensEntity> getAspNetUserTokensById() {
         return aspNetUserTokensById;
     }
@@ -311,6 +307,8 @@ public class AspNetUsersEntity {
         this.aspNetUserTokensById = aspNetUserTokensById;
     }
 
+    @ManyToOne
+    @JoinColumn(name = "UserImageId", referencedColumnName = "Id")
     public ImagesEntity getImagesByUserImageId() {
         return imagesByUserImageId;
     }
@@ -319,6 +317,7 @@ public class AspNetUsersEntity {
         this.imagesByUserImageId = imagesByUserImageId;
     }
 
+    @OneToOne(mappedBy = "aspNetUsersById")
     public EmployeesEntity getEmployeesById() {
         return employeesById;
     }
@@ -327,6 +326,7 @@ public class AspNetUsersEntity {
         this.employeesById = employeesById;
     }
 
+    @OneToOne(mappedBy = "aspNetUsersById")
     public ManagersEntity getManagersById() {
         return managersById;
     }

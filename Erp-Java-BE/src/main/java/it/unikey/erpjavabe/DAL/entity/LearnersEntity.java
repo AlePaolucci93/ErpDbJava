@@ -8,34 +8,19 @@ import java.util.Objects;
 @Entity
 @Table(name = "Learners", schema = "public", catalog = "ErpDB")
 public class LearnersEntity {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Id
-    @Column(name = "Id")
     private int id;
-    @Basic
-    @Column(name = "Name")
     private String name;
-    @Basic
-    @Column(name = "LastName")
     private String lastName;
-    @Basic
-    @Column(name = "FiscalCode")
     private String fiscalCode;
-    @Basic
-    @Column(name = "IBAN")
     private String iban;
-    @Basic
-    @Column(name = "Contact")
     private String contact;
-    @Basic
-    @Column(name = "Termination")
     private Timestamp termination;
-    @Basic
-    @Column(name = "Placement")
     private Timestamp placement;
-    @OneToMany(mappedBy = "learnersByLearnerId")
     private Collection<AttendsEntity> attendsById;
 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @Column(name = "Id", nullable = false)
     public int getId() {
         return id;
     }
@@ -44,6 +29,8 @@ public class LearnersEntity {
         this.id = id;
     }
 
+    @Basic
+    @Column(name = "Name", nullable = false, length = -1)
     public String getName() {
         return name;
     }
@@ -52,6 +39,8 @@ public class LearnersEntity {
         this.name = name;
     }
 
+    @Basic
+    @Column(name = "LastName", nullable = false, length = -1)
     public String getLastName() {
         return lastName;
     }
@@ -60,6 +49,8 @@ public class LearnersEntity {
         this.lastName = lastName;
     }
 
+    @Basic
+    @Column(name = "FiscalCode", nullable = false, length = -1)
     public String getFiscalCode() {
         return fiscalCode;
     }
@@ -68,6 +59,8 @@ public class LearnersEntity {
         this.fiscalCode = fiscalCode;
     }
 
+    @Basic
+    @Column(name = "IBAN", nullable = false, length = -1)
     public String getIban() {
         return iban;
     }
@@ -76,6 +69,8 @@ public class LearnersEntity {
         this.iban = iban;
     }
 
+    @Basic
+    @Column(name = "Contact", nullable = false, length = -1)
     public String getContact() {
         return contact;
     }
@@ -84,6 +79,8 @@ public class LearnersEntity {
         this.contact = contact;
     }
 
+    @Basic
+    @Column(name = "Termination", nullable = true)
     public Timestamp getTermination() {
         return termination;
     }
@@ -92,6 +89,8 @@ public class LearnersEntity {
         this.termination = termination;
     }
 
+    @Basic
+    @Column(name = "Placement", nullable = true)
     public Timestamp getPlacement() {
         return placement;
     }
@@ -113,6 +112,7 @@ public class LearnersEntity {
         return Objects.hash(id, name, lastName, fiscalCode, iban, contact, termination, placement);
     }
 
+    @OneToMany(mappedBy = "learnersByLearnerId")
     public Collection<AttendsEntity> getAttendsById() {
         return attendsById;
     }

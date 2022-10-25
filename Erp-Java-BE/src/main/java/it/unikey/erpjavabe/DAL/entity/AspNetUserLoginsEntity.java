@@ -7,24 +7,15 @@ import java.util.Objects;
 @Table(name = "AspNetUserLogins", schema = "public", catalog = "ErpDB")
 @IdClass(AspNetUserLoginsEntityPK.class)
 public class AspNetUserLoginsEntity {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Id
-    @Column(name = "LoginProvider")
     private String loginProvider;
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Id
-    @Column(name = "ProviderKey")
     private String providerKey;
-    @Basic
-    @Column(name = "ProviderDisplayName")
     private String providerDisplayName;
-    @Basic
-    @Column(name = "UserId")
     private int userId;
-    @ManyToOne
-    @JoinColumn(name = "UserId", referencedColumnName = "Id", nullable = false)
     private AspNetUsersEntity aspNetUsersByUserId;
 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @Column(name = "LoginProvider", nullable = false, length = -1)
     public String getLoginProvider() {
         return loginProvider;
     }
@@ -33,6 +24,9 @@ public class AspNetUserLoginsEntity {
         this.loginProvider = loginProvider;
     }
 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @Column(name = "ProviderKey", nullable = false, length = -1)
     public String getProviderKey() {
         return providerKey;
     }
@@ -41,6 +35,8 @@ public class AspNetUserLoginsEntity {
         this.providerKey = providerKey;
     }
 
+    @Basic
+    @Column(name = "ProviderDisplayName", nullable = true, length = -1)
     public String getProviderDisplayName() {
         return providerDisplayName;
     }
@@ -49,6 +45,8 @@ public class AspNetUserLoginsEntity {
         this.providerDisplayName = providerDisplayName;
     }
 
+    @Basic
+    @Column(name = "UserId", nullable = false)
     public int getUserId() {
         return userId;
     }
@@ -70,6 +68,8 @@ public class AspNetUserLoginsEntity {
         return Objects.hash(loginProvider, providerKey, providerDisplayName, userId);
     }
 
+    @ManyToOne
+    @JoinColumn(name = "UserId", referencedColumnName = "Id", nullable = false)
     public AspNetUsersEntity getAspNetUsersByUserId() {
         return aspNetUsersByUserId;
     }

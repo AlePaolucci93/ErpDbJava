@@ -6,23 +6,15 @@ import java.util.Objects;
 @Entity
 @Table(name = "EmployeePaySlip", schema = "public", catalog = "ErpDB")
 public class EmployeePaySlipEntity {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Id
-    @Column(name = "Id")
     private int id;
-    @Basic
-    @Column(name = "EmployeeId")
     private Integer employeeId;
-    @Basic
-    @Column(name = "EmployeePaySlipPath")
     private String employeePaySlipPath;
-    @Basic
-    @Column(name = "PaySlipDate")
     private String paySlipDate;
-    @ManyToOne
-    @JoinColumn(name = "EmployeeId", referencedColumnName = "Id")
     private EmployeesEntity employeesByEmployeeId;
 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @Column(name = "Id", nullable = false)
     public int getId() {
         return id;
     }
@@ -31,6 +23,8 @@ public class EmployeePaySlipEntity {
         this.id = id;
     }
 
+    @Basic
+    @Column(name = "EmployeeId", nullable = true)
     public Integer getEmployeeId() {
         return employeeId;
     }
@@ -39,6 +33,8 @@ public class EmployeePaySlipEntity {
         this.employeeId = employeeId;
     }
 
+    @Basic
+    @Column(name = "EmployeePaySlipPath", nullable = true, length = -1)
     public String getEmployeePaySlipPath() {
         return employeePaySlipPath;
     }
@@ -47,6 +43,8 @@ public class EmployeePaySlipEntity {
         this.employeePaySlipPath = employeePaySlipPath;
     }
 
+    @Basic
+    @Column(name = "PaySlipDate", nullable = true, length = -1)
     public String getPaySlipDate() {
         return paySlipDate;
     }
@@ -68,6 +66,8 @@ public class EmployeePaySlipEntity {
         return Objects.hash(id, employeeId, employeePaySlipPath, paySlipDate);
     }
 
+    @ManyToOne
+    @JoinColumn(name = "EmployeeId", referencedColumnName = "Id")
     public EmployeesEntity getEmployeesByEmployeeId() {
         return employeesByEmployeeId;
     }

@@ -7,32 +7,18 @@ import java.util.Objects;
 @Entity
 @Table(name = "Records", schema = "public", catalog = "ErpDB")
 public class RecordsEntity {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Id
-    @Column(name = "Id")
     private int id;
-    @Basic
-    @Column(name = "DateTime")
     private Timestamp dateTime;
-    @Basic
-    @Column(name = "WorkedHours")
     private double workedHours;
-    @Basic
-    @Column(name = "RecordType")
     private short recordType;
-    @Basic
-    @Column(name = "ProjectId")
     private Integer projectId;
-    @Basic
-    @Column(name = "TimesheetId")
     private int timesheetId;
-    @ManyToOne
-    @JoinColumn(name = "ProjectId", referencedColumnName = "Id")
     private ProjectsEntity projectsByProjectId;
-    @ManyToOne
-    @JoinColumn(name = "TimesheetId", referencedColumnName = "Id", nullable = false)
     private TimesheetsEntity timesheetsByTimesheetId;
 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @Column(name = "Id", nullable = false)
     public int getId() {
         return id;
     }
@@ -41,6 +27,8 @@ public class RecordsEntity {
         this.id = id;
     }
 
+    @Basic
+    @Column(name = "DateTime", nullable = false)
     public Timestamp getDateTime() {
         return dateTime;
     }
@@ -49,6 +37,8 @@ public class RecordsEntity {
         this.dateTime = dateTime;
     }
 
+    @Basic
+    @Column(name = "WorkedHours", nullable = false, precision = 0)
     public double getWorkedHours() {
         return workedHours;
     }
@@ -57,6 +47,8 @@ public class RecordsEntity {
         this.workedHours = workedHours;
     }
 
+    @Basic
+    @Column(name = "RecordType", nullable = false)
     public short getRecordType() {
         return recordType;
     }
@@ -65,6 +57,8 @@ public class RecordsEntity {
         this.recordType = recordType;
     }
 
+    @Basic
+    @Column(name = "ProjectId", nullable = true)
     public Integer getProjectId() {
         return projectId;
     }
@@ -73,6 +67,8 @@ public class RecordsEntity {
         this.projectId = projectId;
     }
 
+    @Basic
+    @Column(name = "TimesheetId", nullable = false)
     public int getTimesheetId() {
         return timesheetId;
     }
@@ -94,6 +90,8 @@ public class RecordsEntity {
         return Objects.hash(id, dateTime, workedHours, recordType, projectId, timesheetId);
     }
 
+    @ManyToOne
+    @JoinColumn(name = "ProjectId", referencedColumnName = "Id")
     public ProjectsEntity getProjectsByProjectId() {
         return projectsByProjectId;
     }
@@ -102,6 +100,8 @@ public class RecordsEntity {
         this.projectsByProjectId = projectsByProjectId;
     }
 
+    @ManyToOne
+    @JoinColumn(name = "TimesheetId", referencedColumnName = "Id", nullable = false)
     public TimesheetsEntity getTimesheetsByTimesheetId() {
         return timesheetsByTimesheetId;
     }

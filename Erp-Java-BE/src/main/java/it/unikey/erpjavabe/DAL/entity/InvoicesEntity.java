@@ -9,46 +9,23 @@ import java.util.Objects;
 @Entity
 @Table(name = "Invoices", schema = "public", catalog = "ErpDB")
 public class InvoicesEntity {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Id
-    @Column(name = "Id")
     private int id;
-    @Basic
-    @Column(name = "InvoiceNumber")
     private String invoiceNumber;
-    @Basic
-    @Column(name = "StartDate")
     private Timestamp startDate;
-    @Basic
-    @Column(name = "ExpireDate")
     private Timestamp expireDate;
-    @Basic
-    @Column(name = "Amount")
     private BigInteger amount;
-    @Basic
-    @Column(name = "CustomerId")
     private int customerId;
-    @Basic
-    @Column(name = "CollaborationType")
     private int collaborationType;
-    @Basic
-    @Column(name = "IsDeleted")
     private boolean isDeleted;
-    @Basic
-    @Column(name = "EmployeeId")
     private Integer employeeId;
-    @Basic
-    @Column(name = "Notes")
     private String notes;
-    @OneToMany(mappedBy = "invoicesByInvoiceId")
     private Collection<InvoicePaymentsEntity> invoicePaymentsById;
-    @ManyToOne
-    @JoinColumn(name = "CustomerId", referencedColumnName = "Id", nullable = false)
     private CustomersEntity customersByCustomerId;
-    @ManyToOne
-    @JoinColumn(name = "EmployeeId", referencedColumnName = "Id")
     private EmployeesEntity employeesByEmployeeId;
 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @Column(name = "Id", nullable = false)
     public int getId() {
         return id;
     }
@@ -57,6 +34,8 @@ public class InvoicesEntity {
         this.id = id;
     }
 
+    @Basic
+    @Column(name = "InvoiceNumber", nullable = true, length = -1)
     public String getInvoiceNumber() {
         return invoiceNumber;
     }
@@ -65,6 +44,8 @@ public class InvoicesEntity {
         this.invoiceNumber = invoiceNumber;
     }
 
+    @Basic
+    @Column(name = "StartDate", nullable = true)
     public Timestamp getStartDate() {
         return startDate;
     }
@@ -73,6 +54,8 @@ public class InvoicesEntity {
         this.startDate = startDate;
     }
 
+    @Basic
+    @Column(name = "ExpireDate", nullable = true)
     public Timestamp getExpireDate() {
         return expireDate;
     }
@@ -81,6 +64,8 @@ public class InvoicesEntity {
         this.expireDate = expireDate;
     }
 
+    @Basic
+    @Column(name = "Amount", nullable = false, precision = 0)
     public BigInteger getAmount() {
         return amount;
     }
@@ -89,6 +74,8 @@ public class InvoicesEntity {
         this.amount = amount;
     }
 
+    @Basic
+    @Column(name = "CustomerId", nullable = false)
     public int getCustomerId() {
         return customerId;
     }
@@ -97,6 +84,8 @@ public class InvoicesEntity {
         this.customerId = customerId;
     }
 
+    @Basic
+    @Column(name = "CollaborationType", nullable = false)
     public int getCollaborationType() {
         return collaborationType;
     }
@@ -105,6 +94,8 @@ public class InvoicesEntity {
         this.collaborationType = collaborationType;
     }
 
+    @Basic
+    @Column(name = "IsDeleted", nullable = false)
     public boolean isDeleted() {
         return isDeleted;
     }
@@ -113,6 +104,8 @@ public class InvoicesEntity {
         isDeleted = deleted;
     }
 
+    @Basic
+    @Column(name = "EmployeeId", nullable = true)
     public Integer getEmployeeId() {
         return employeeId;
     }
@@ -121,6 +114,8 @@ public class InvoicesEntity {
         this.employeeId = employeeId;
     }
 
+    @Basic
+    @Column(name = "Notes", nullable = true, length = -1)
     public String getNotes() {
         return notes;
     }
@@ -142,6 +137,7 @@ public class InvoicesEntity {
         return Objects.hash(id, invoiceNumber, startDate, expireDate, amount, customerId, collaborationType, isDeleted, employeeId, notes);
     }
 
+    @OneToMany(mappedBy = "invoicesByInvoiceId")
     public Collection<InvoicePaymentsEntity> getInvoicePaymentsById() {
         return invoicePaymentsById;
     }
@@ -150,6 +146,8 @@ public class InvoicesEntity {
         this.invoicePaymentsById = invoicePaymentsById;
     }
 
+    @ManyToOne
+    @JoinColumn(name = "CustomerId", referencedColumnName = "Id", nullable = false)
     public CustomersEntity getCustomersByCustomerId() {
         return customersByCustomerId;
     }
@@ -158,6 +156,8 @@ public class InvoicesEntity {
         this.customersByCustomerId = customersByCustomerId;
     }
 
+    @ManyToOne
+    @JoinColumn(name = "EmployeeId", referencedColumnName = "Id")
     public EmployeesEntity getEmployeesByEmployeeId() {
         return employeesByEmployeeId;
     }

@@ -8,19 +8,13 @@ import java.io.Serializable;
 import java.util.Objects;
 
 public class AspNetUserTokensEntityPK implements Serializable {
-    @Column(name = "UserId")
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int userId;
-    @Column(name = "LoginProvider")
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String loginProvider;
-    @Column(name = "Name")
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String name;
 
+    @Column(name = "UserId", nullable = false)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int getUserId() {
         return userId;
     }
@@ -29,6 +23,9 @@ public class AspNetUserTokensEntityPK implements Serializable {
         this.userId = userId;
     }
 
+    @Column(name = "LoginProvider", nullable = false, length = -1)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public String getLoginProvider() {
         return loginProvider;
     }
@@ -37,6 +34,9 @@ public class AspNetUserTokensEntityPK implements Serializable {
         this.loginProvider = loginProvider;
     }
 
+    @Column(name = "Name", nullable = false, length = -1)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public String getName() {
         return name;
     }

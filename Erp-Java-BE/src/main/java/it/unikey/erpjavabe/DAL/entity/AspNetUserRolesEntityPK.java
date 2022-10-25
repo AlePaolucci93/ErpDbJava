@@ -8,15 +8,12 @@ import java.io.Serializable;
 import java.util.Objects;
 
 public class AspNetUserRolesEntityPK implements Serializable {
-    @Column(name = "UserId")
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int userId;
-    @Column(name = "RoleId")
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int roleId;
 
+    @Column(name = "UserId", nullable = false)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int getUserId() {
         return userId;
     }
@@ -25,6 +22,9 @@ public class AspNetUserRolesEntityPK implements Serializable {
         this.userId = userId;
     }
 
+    @Column(name = "RoleId", nullable = false)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int getRoleId() {
         return roleId;
     }

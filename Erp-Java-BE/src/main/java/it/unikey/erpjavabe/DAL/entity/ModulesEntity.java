@@ -8,34 +8,20 @@ import java.util.Objects;
 @Entity
 @Table(name = "Modules", schema = "public", catalog = "ErpDB")
 public class ModulesEntity {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Id
-    @Column(name = "Id")
     private int id;
-    @Basic
-    @Column(name = "StartDate")
     private Timestamp startDate;
-    @Basic
-    @Column(name = "EndDate")
     private Timestamp endDate;
-    @Basic
-    @Column(name = "Type")
     private int type;
-    @Basic
-    @Column(name = "CourseDAOId")
     private Integer courseDaoId;
-    @OneToMany(mappedBy = "modulesByModuleId")
     private Collection<AttendsEntity> attendsById;
-    @OneToMany(mappedBy = "modulesByCurrentModuleId")
     private Collection<ModuleRelationsEntity> moduleRelationsById;
-    @OneToMany(mappedBy = "modulesByParentModuleId")
     private Collection<ModuleRelationsEntity> moduleRelationsById_0;
-    @ManyToOne
-    @JoinColumn(name = "CourseDAOId", referencedColumnName = "Id")
     private CoursesEntity coursesByCourseDaoId;
-    @OneToMany(mappedBy = "modulesByModuleId")
     private Collection<TeachesEntity> teachesById;
 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @Column(name = "Id", nullable = false)
     public int getId() {
         return id;
     }
@@ -44,6 +30,8 @@ public class ModulesEntity {
         this.id = id;
     }
 
+    @Basic
+    @Column(name = "StartDate", nullable = false)
     public Timestamp getStartDate() {
         return startDate;
     }
@@ -52,6 +40,8 @@ public class ModulesEntity {
         this.startDate = startDate;
     }
 
+    @Basic
+    @Column(name = "EndDate", nullable = false)
     public Timestamp getEndDate() {
         return endDate;
     }
@@ -60,6 +50,8 @@ public class ModulesEntity {
         this.endDate = endDate;
     }
 
+    @Basic
+    @Column(name = "Type", nullable = false)
     public int getType() {
         return type;
     }
@@ -68,6 +60,8 @@ public class ModulesEntity {
         this.type = type;
     }
 
+    @Basic
+    @Column(name = "CourseDAOId", nullable = true)
     public Integer getCourseDaoId() {
         return courseDaoId;
     }
@@ -89,6 +83,7 @@ public class ModulesEntity {
         return Objects.hash(id, startDate, endDate, type, courseDaoId);
     }
 
+    @OneToMany(mappedBy = "modulesByModuleId")
     public Collection<AttendsEntity> getAttendsById() {
         return attendsById;
     }
@@ -97,6 +92,7 @@ public class ModulesEntity {
         this.attendsById = attendsById;
     }
 
+    @OneToMany(mappedBy = "modulesByCurrentModuleId")
     public Collection<ModuleRelationsEntity> getModuleRelationsById() {
         return moduleRelationsById;
     }
@@ -105,6 +101,7 @@ public class ModulesEntity {
         this.moduleRelationsById = moduleRelationsById;
     }
 
+    @OneToMany(mappedBy = "modulesByParentModuleId")
     public Collection<ModuleRelationsEntity> getModuleRelationsById_0() {
         return moduleRelationsById_0;
     }
@@ -113,6 +110,8 @@ public class ModulesEntity {
         this.moduleRelationsById_0 = moduleRelationsById_0;
     }
 
+    @ManyToOne
+    @JoinColumn(name = "CourseDAOId", referencedColumnName = "Id")
     public CoursesEntity getCoursesByCourseDaoId() {
         return coursesByCourseDaoId;
     }
@@ -121,6 +120,7 @@ public class ModulesEntity {
         this.coursesByCourseDaoId = coursesByCourseDaoId;
     }
 
+    @OneToMany(mappedBy = "modulesByModuleId")
     public Collection<TeachesEntity> getTeachesById() {
         return teachesById;
     }

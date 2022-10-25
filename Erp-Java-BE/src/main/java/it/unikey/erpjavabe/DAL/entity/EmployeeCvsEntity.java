@@ -7,23 +7,15 @@ import java.util.Objects;
 @Entity
 @Table(name = "EmployeeCvs", schema = "public", catalog = "ErpDB")
 public class EmployeeCvsEntity {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Id
-    @Column(name = "Id")
     private int id;
-    @Basic
-    @Column(name = "Cvpath")
     private String cvpath;
-    @Basic
-    @Column(name = "DateOfInsertion")
     private Timestamp dateOfInsertion;
-    @Basic
-    @Column(name = "EmployeeId")
     private Integer employeeId;
-    @ManyToOne
-    @JoinColumn(name = "EmployeeId", referencedColumnName = "Id")
     private EmployeesEntity employeesByEmployeeId;
 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @Column(name = "Id", nullable = false)
     public int getId() {
         return id;
     }
@@ -32,6 +24,8 @@ public class EmployeeCvsEntity {
         this.id = id;
     }
 
+    @Basic
+    @Column(name = "Cvpath", nullable = true, length = -1)
     public String getCvpath() {
         return cvpath;
     }
@@ -40,6 +34,8 @@ public class EmployeeCvsEntity {
         this.cvpath = cvpath;
     }
 
+    @Basic
+    @Column(name = "DateOfInsertion", nullable = false)
     public Timestamp getDateOfInsertion() {
         return dateOfInsertion;
     }
@@ -48,6 +44,8 @@ public class EmployeeCvsEntity {
         this.dateOfInsertion = dateOfInsertion;
     }
 
+    @Basic
+    @Column(name = "EmployeeId", nullable = true)
     public Integer getEmployeeId() {
         return employeeId;
     }
@@ -69,6 +67,8 @@ public class EmployeeCvsEntity {
         return Objects.hash(id, cvpath, dateOfInsertion, employeeId);
     }
 
+    @ManyToOne
+    @JoinColumn(name = "EmployeeId", referencedColumnName = "Id")
     public EmployeesEntity getEmployeesByEmployeeId() {
         return employeesByEmployeeId;
     }

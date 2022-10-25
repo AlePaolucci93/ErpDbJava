@@ -6,29 +6,17 @@ import java.util.Objects;
 @Entity
 @Table(name = "Addresses", schema = "public", catalog = "ErpDB")
 public class AddressesEntity {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Id
-    @Column(name = "Id")
     private int id;
-    @Basic
-    @Column(name = "AddressType")
     private int addressType;
-    @Basic
-    @Column(name = "StreetName")
     private String streetName;
-    @Basic
-    @Column(name = "CAP")
     private String cap;
-    @Basic
-    @Column(name = "City")
     private String city;
-    @Basic
-    @Column(name = "EmployeeId")
     private Integer employeeId;
-    @ManyToOne
-    @JoinColumn(name = "EmployeeId", referencedColumnName = "Id")
     private EmployeesEntity employeesByEmployeeId;
 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @Column(name = "Id", nullable = false)
     public int getId() {
         return id;
     }
@@ -37,6 +25,8 @@ public class AddressesEntity {
         this.id = id;
     }
 
+    @Basic
+    @Column(name = "AddressType", nullable = false)
     public int getAddressType() {
         return addressType;
     }
@@ -45,6 +35,8 @@ public class AddressesEntity {
         this.addressType = addressType;
     }
 
+    @Basic
+    @Column(name = "StreetName", nullable = true, length = -1)
     public String getStreetName() {
         return streetName;
     }
@@ -53,6 +45,8 @@ public class AddressesEntity {
         this.streetName = streetName;
     }
 
+    @Basic
+    @Column(name = "CAP", nullable = true, length = -1)
     public String getCap() {
         return cap;
     }
@@ -61,6 +55,8 @@ public class AddressesEntity {
         this.cap = cap;
     }
 
+    @Basic
+    @Column(name = "City", nullable = true, length = -1)
     public String getCity() {
         return city;
     }
@@ -69,6 +65,8 @@ public class AddressesEntity {
         this.city = city;
     }
 
+    @Basic
+    @Column(name = "EmployeeId", nullable = true)
     public Integer getEmployeeId() {
         return employeeId;
     }
@@ -90,6 +88,8 @@ public class AddressesEntity {
         return Objects.hash(id, addressType, streetName, cap, city, employeeId);
     }
 
+    @ManyToOne
+    @JoinColumn(name = "EmployeeId", referencedColumnName = "Id")
     public EmployeesEntity getEmployeesByEmployeeId() {
         return employeesByEmployeeId;
     }

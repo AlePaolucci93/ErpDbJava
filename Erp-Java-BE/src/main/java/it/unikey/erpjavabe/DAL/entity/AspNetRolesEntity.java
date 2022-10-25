@@ -7,24 +7,16 @@ import java.util.Objects;
 @Entity
 @Table(name = "AspNetRoles", schema = "public", catalog = "ErpDB")
 public class AspNetRolesEntity {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Id
-    @Column(name = "Id")
     private int id;
-    @Basic
-    @Column(name = "Name")
     private String name;
-    @Basic
-    @Column(name = "NormalizedName")
     private String normalizedName;
-    @Basic
-    @Column(name = "ConcurrencyStamp")
     private String concurrencyStamp;
-    @OneToMany(mappedBy = "aspNetRolesByRoleId")
     private Collection<AspNetRoleClaimsEntity> aspNetRoleClaimsById;
-    @OneToMany(mappedBy = "aspNetRolesByRoleId")
     private Collection<AspNetUserRolesEntity> aspNetUserRolesById;
 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @Column(name = "Id", nullable = false)
     public int getId() {
         return id;
     }
@@ -33,6 +25,8 @@ public class AspNetRolesEntity {
         this.id = id;
     }
 
+    @Basic
+    @Column(name = "Name", nullable = true, length = 256)
     public String getName() {
         return name;
     }
@@ -41,6 +35,8 @@ public class AspNetRolesEntity {
         this.name = name;
     }
 
+    @Basic
+    @Column(name = "NormalizedName", nullable = true, length = 256)
     public String getNormalizedName() {
         return normalizedName;
     }
@@ -49,6 +45,8 @@ public class AspNetRolesEntity {
         this.normalizedName = normalizedName;
     }
 
+    @Basic
+    @Column(name = "ConcurrencyStamp", nullable = true, length = -1)
     public String getConcurrencyStamp() {
         return concurrencyStamp;
     }
@@ -70,6 +68,7 @@ public class AspNetRolesEntity {
         return Objects.hash(id, name, normalizedName, concurrencyStamp);
     }
 
+    @OneToMany(mappedBy = "aspNetRolesByRoleId")
     public Collection<AspNetRoleClaimsEntity> getAspNetRoleClaimsById() {
         return aspNetRoleClaimsById;
     }
@@ -78,6 +77,7 @@ public class AspNetRolesEntity {
         this.aspNetRoleClaimsById = aspNetRoleClaimsById;
     }
 
+    @OneToMany(mappedBy = "aspNetRolesByRoleId")
     public Collection<AspNetUserRolesEntity> getAspNetUserRolesById() {
         return aspNetUserRolesById;
     }

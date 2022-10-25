@@ -7,16 +7,13 @@ import java.util.Objects;
 @Entity
 @Table(name = "Managers", schema = "public", catalog = "ErpDB")
 public class ManagersEntity {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Id
-    @Column(name = "Id")
     private int id;
-    @OneToOne
-    @JoinColumn(name = "Id", referencedColumnName = "Id", nullable = false)
     private AspNetUsersEntity aspNetUsersById;
-    @OneToMany(mappedBy = "managersByManagerId")
     private Collection<PropositionsEntity> propositionsById;
 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @Column(name = "Id", nullable = false)
     public int getId() {
         return id;
     }
@@ -38,6 +35,8 @@ public class ManagersEntity {
         return Objects.hash(id);
     }
 
+    @OneToOne
+    @JoinColumn(name = "Id", referencedColumnName = "Id", nullable = false)
     public AspNetUsersEntity getAspNetUsersById() {
         return aspNetUsersById;
     }
@@ -46,6 +45,7 @@ public class ManagersEntity {
         this.aspNetUsersById = aspNetUsersById;
     }
 
+    @OneToMany(mappedBy = "managersByManagerId")
     public Collection<PropositionsEntity> getPropositionsById() {
         return propositionsById;
     }

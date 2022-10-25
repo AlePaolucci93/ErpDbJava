@@ -6,14 +6,12 @@ import java.util.Objects;
 @Entity
 @Table(name = "Administrators", schema = "public", catalog = "ErpDB")
 public class AdministratorsEntity {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Id
-    @Column(name = "Id")
     private int id;
-    @OneToOne
-    @JoinColumn(name = "Id", referencedColumnName = "Id", nullable = false)
     private AspNetUsersEntity aspNetUsersById;
 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @Column(name = "Id", nullable = false)
     public int getId() {
         return id;
     }
@@ -35,6 +33,8 @@ public class AdministratorsEntity {
         return Objects.hash(id);
     }
 
+    @OneToOne
+    @JoinColumn(name = "Id", referencedColumnName = "Id", nullable = false)
     public AspNetUsersEntity getAspNetUsersById() {
         return aspNetUsersById;
     }

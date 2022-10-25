@@ -8,26 +8,16 @@ import java.util.Objects;
 @Entity
 @Table(name = "InvoicePayments", schema = "public", catalog = "ErpDB")
 public class InvoicePaymentsEntity {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Id
-    @Column(name = "Id")
     private int id;
-    @Basic
-    @Column(name = "InvoiceId")
     private int invoiceId;
-    @Basic
-    @Column(name = "DateOfPayment")
     private Timestamp dateOfPayment;
-    @Basic
-    @Column(name = "Amount")
     private BigInteger amount;
-    @Basic
-    @Column(name = "PaymentType")
     private int paymentType;
-    @ManyToOne
-    @JoinColumn(name = "InvoiceId", referencedColumnName = "Id", nullable = false)
     private InvoicesEntity invoicesByInvoiceId;
 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @Column(name = "Id", nullable = false)
     public int getId() {
         return id;
     }
@@ -36,6 +26,8 @@ public class InvoicePaymentsEntity {
         this.id = id;
     }
 
+    @Basic
+    @Column(name = "InvoiceId", nullable = false)
     public int getInvoiceId() {
         return invoiceId;
     }
@@ -44,6 +36,8 @@ public class InvoicePaymentsEntity {
         this.invoiceId = invoiceId;
     }
 
+    @Basic
+    @Column(name = "DateOfPayment", nullable = false)
     public Timestamp getDateOfPayment() {
         return dateOfPayment;
     }
@@ -52,6 +46,8 @@ public class InvoicePaymentsEntity {
         this.dateOfPayment = dateOfPayment;
     }
 
+    @Basic
+    @Column(name = "Amount", nullable = false, precision = 0)
     public BigInteger getAmount() {
         return amount;
     }
@@ -60,6 +56,8 @@ public class InvoicePaymentsEntity {
         this.amount = amount;
     }
 
+    @Basic
+    @Column(name = "PaymentType", nullable = false)
     public int getPaymentType() {
         return paymentType;
     }
@@ -81,6 +79,8 @@ public class InvoicePaymentsEntity {
         return Objects.hash(id, invoiceId, dateOfPayment, amount, paymentType);
     }
 
+    @ManyToOne
+    @JoinColumn(name = "InvoiceId", referencedColumnName = "Id", nullable = false)
     public InvoicesEntity getInvoicesByInvoiceId() {
         return invoicesByInvoiceId;
     }

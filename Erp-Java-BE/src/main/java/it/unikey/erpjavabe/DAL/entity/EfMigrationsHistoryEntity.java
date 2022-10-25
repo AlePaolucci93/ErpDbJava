@@ -6,14 +6,12 @@ import java.util.Objects;
 @Entity
 @Table(name = "__EFMigrationsHistory", schema = "public", catalog = "ErpDB")
 public class EfMigrationsHistoryEntity {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Id
-    @Column(name = "MigrationId")
     private String migrationId;
-    @Basic
-    @Column(name = "ProductVersion")
     private String productVersion;
 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @Column(name = "MigrationId", nullable = false, length = 150)
     public String getMigrationId() {
         return migrationId;
     }
@@ -22,6 +20,8 @@ public class EfMigrationsHistoryEntity {
         this.migrationId = migrationId;
     }
 
+    @Basic
+    @Column(name = "ProductVersion", nullable = false, length = 32)
     public String getProductVersion() {
         return productVersion;
     }

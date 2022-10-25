@@ -6,23 +6,15 @@ import java.util.Objects;
 @Entity
 @Table(name = "Attends", schema = "public", catalog = "ErpDB")
 public class AttendsEntity {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Id
-    @Column(name = "Id")
     private int id;
-    @Basic
-    @Column(name = "LearnerId")
     private int learnerId;
-    @Basic
-    @Column(name = "ModuleId")
     private int moduleId;
-    @ManyToOne
-    @JoinColumn(name = "LearnerId", referencedColumnName = "Id", nullable = false)
     private LearnersEntity learnersByLearnerId;
-    @ManyToOne
-    @JoinColumn(name = "ModuleId", referencedColumnName = "Id", nullable = false)
     private ModulesEntity modulesByModuleId;
 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @Column(name = "Id", nullable = false)
     public int getId() {
         return id;
     }
@@ -31,6 +23,8 @@ public class AttendsEntity {
         this.id = id;
     }
 
+    @Basic
+    @Column(name = "LearnerId", nullable = false)
     public int getLearnerId() {
         return learnerId;
     }
@@ -39,6 +33,8 @@ public class AttendsEntity {
         this.learnerId = learnerId;
     }
 
+    @Basic
+    @Column(name = "ModuleId", nullable = false)
     public int getModuleId() {
         return moduleId;
     }
@@ -60,6 +56,8 @@ public class AttendsEntity {
         return Objects.hash(id, learnerId, moduleId);
     }
 
+    @ManyToOne
+    @JoinColumn(name = "LearnerId", referencedColumnName = "Id", nullable = false)
     public LearnersEntity getLearnersByLearnerId() {
         return learnersByLearnerId;
     }
@@ -68,6 +66,8 @@ public class AttendsEntity {
         this.learnersByLearnerId = learnersByLearnerId;
     }
 
+    @ManyToOne
+    @JoinColumn(name = "ModuleId", referencedColumnName = "Id", nullable = false)
     public ModulesEntity getModulesByModuleId() {
         return modulesByModuleId;
     }

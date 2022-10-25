@@ -7,19 +7,14 @@ import java.util.Objects;
 @Entity
 @Table(name = "Teachers", schema = "public", catalog = "ErpDB")
 public class TeachersEntity {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Id
-    @Column(name = "Id")
     private int id;
-    @Basic
-    @Column(name = "Name")
     private String name;
-    @Basic
-    @Column(name = "LastName")
     private String lastName;
-    @OneToMany(mappedBy = "teachersByTeacherId")
     private Collection<TeachesEntity> teachesById;
 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @Column(name = "Id", nullable = false)
     public int getId() {
         return id;
     }
@@ -28,6 +23,8 @@ public class TeachersEntity {
         this.id = id;
     }
 
+    @Basic
+    @Column(name = "Name", nullable = false, length = -1)
     public String getName() {
         return name;
     }
@@ -36,6 +33,8 @@ public class TeachersEntity {
         this.name = name;
     }
 
+    @Basic
+    @Column(name = "LastName", nullable = false, length = -1)
     public String getLastName() {
         return lastName;
     }
@@ -57,6 +56,7 @@ public class TeachersEntity {
         return Objects.hash(id, name, lastName);
     }
 
+    @OneToMany(mappedBy = "teachersByTeacherId")
     public Collection<TeachesEntity> getTeachesById() {
         return teachesById;
     }

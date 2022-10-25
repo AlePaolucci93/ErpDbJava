@@ -7,38 +7,20 @@ import java.util.Objects;
 @Entity
 @Table(name = "ProjectsAssignment", schema = "public", catalog = "ErpDB")
 public class ProjectsAssignmentEntity {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Id
-    @Column(name = "Id")
     private int id;
-    @Basic
-    @Column(name = "EmployeeId")
     private int employeeId;
-    @Basic
-    @Column(name = "ProjectId")
     private int projectId;
-    @Basic
-    @Column(name = "AssignmentDate")
     private Timestamp assignmentDate;
-    @Basic
-    @Column(name = "AssignmentEnded")
     private Timestamp assignmentEnded;
-    @Basic
-    @Column(name = "IsDeleted")
     private boolean isDeleted;
-    @Basic
-    @Column(name = "ResourceCost")
     private double resourceCost;
-    @Basic
-    @Column(name = "SalesRate")
     private double salesRate;
-    @ManyToOne
-    @JoinColumn(name = "EmployeeId", referencedColumnName = "Id", nullable = false)
     private EmployeesEntity employeesByEmployeeId;
-    @ManyToOne
-    @JoinColumn(name = "ProjectId", referencedColumnName = "Id", nullable = false)
     private ProjectsEntity projectsByProjectId;
 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @Column(name = "Id", nullable = false)
     public int getId() {
         return id;
     }
@@ -47,6 +29,8 @@ public class ProjectsAssignmentEntity {
         this.id = id;
     }
 
+    @Basic
+    @Column(name = "EmployeeId", nullable = false)
     public int getEmployeeId() {
         return employeeId;
     }
@@ -55,6 +39,8 @@ public class ProjectsAssignmentEntity {
         this.employeeId = employeeId;
     }
 
+    @Basic
+    @Column(name = "ProjectId", nullable = false)
     public int getProjectId() {
         return projectId;
     }
@@ -63,6 +49,8 @@ public class ProjectsAssignmentEntity {
         this.projectId = projectId;
     }
 
+    @Basic
+    @Column(name = "AssignmentDate", nullable = false)
     public Timestamp getAssignmentDate() {
         return assignmentDate;
     }
@@ -71,6 +59,8 @@ public class ProjectsAssignmentEntity {
         this.assignmentDate = assignmentDate;
     }
 
+    @Basic
+    @Column(name = "AssignmentEnded", nullable = true)
     public Timestamp getAssignmentEnded() {
         return assignmentEnded;
     }
@@ -79,6 +69,8 @@ public class ProjectsAssignmentEntity {
         this.assignmentEnded = assignmentEnded;
     }
 
+    @Basic
+    @Column(name = "IsDeleted", nullable = false)
     public boolean isDeleted() {
         return isDeleted;
     }
@@ -87,6 +79,8 @@ public class ProjectsAssignmentEntity {
         isDeleted = deleted;
     }
 
+    @Basic
+    @Column(name = "ResourceCost", nullable = false, precision = 0)
     public double getResourceCost() {
         return resourceCost;
     }
@@ -95,6 +89,8 @@ public class ProjectsAssignmentEntity {
         this.resourceCost = resourceCost;
     }
 
+    @Basic
+    @Column(name = "SalesRate", nullable = false, precision = 0)
     public double getSalesRate() {
         return salesRate;
     }
@@ -116,6 +112,8 @@ public class ProjectsAssignmentEntity {
         return Objects.hash(id, employeeId, projectId, assignmentDate, assignmentEnded, isDeleted, resourceCost, salesRate);
     }
 
+    @ManyToOne
+    @JoinColumn(name = "EmployeeId", referencedColumnName = "Id", nullable = false)
     public EmployeesEntity getEmployeesByEmployeeId() {
         return employeesByEmployeeId;
     }
@@ -124,6 +122,8 @@ public class ProjectsAssignmentEntity {
         this.employeesByEmployeeId = employeesByEmployeeId;
     }
 
+    @ManyToOne
+    @JoinColumn(name = "ProjectId", referencedColumnName = "Id", nullable = false)
     public ProjectsEntity getProjectsByProjectId() {
         return projectsByProjectId;
     }

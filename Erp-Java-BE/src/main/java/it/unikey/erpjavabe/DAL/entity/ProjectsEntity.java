@@ -8,39 +8,21 @@ import java.util.Objects;
 @Entity
 @Table(name = "Projects", schema = "public", catalog = "ErpDB")
 public class ProjectsEntity {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Id
-    @Column(name = "Id")
     private int id;
-    @Basic
-    @Column(name = "Name")
     private String name;
-    @Basic
-    @Column(name = "StartDate")
     private Timestamp startDate;
-    @Basic
-    @Column(name = "ExpireDeliveryDate")
     private Timestamp expireDeliveryDate;
-    @Basic
-    @Column(name = "Description")
     private String description;
-    @Basic
-    @Column(name = "IsDeleted")
     private boolean isDeleted;
-    @Basic
-    @Column(name = "CustomerId")
     private int customerId;
-    @Basic
-    @Column(name = "PaymentDeadLine")
     private int paymentDeadLine;
-    @ManyToOne
-    @JoinColumn(name = "CustomerId", referencedColumnName = "Id", nullable = false)
     private CustomersEntity customersByCustomerId;
-    @OneToMany(mappedBy = "projectsByProjectId")
     private Collection<ProjectsAssignmentEntity> projectsAssignmentsById;
-    @OneToMany(mappedBy = "projectsByProjectId")
     private Collection<RecordsEntity> recordsById;
 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @Column(name = "Id", nullable = false)
     public int getId() {
         return id;
     }
@@ -49,6 +31,8 @@ public class ProjectsEntity {
         this.id = id;
     }
 
+    @Basic
+    @Column(name = "Name", nullable = true, length = -1)
     public String getName() {
         return name;
     }
@@ -57,6 +41,8 @@ public class ProjectsEntity {
         this.name = name;
     }
 
+    @Basic
+    @Column(name = "StartDate", nullable = true)
     public Timestamp getStartDate() {
         return startDate;
     }
@@ -65,6 +51,8 @@ public class ProjectsEntity {
         this.startDate = startDate;
     }
 
+    @Basic
+    @Column(name = "ExpireDeliveryDate", nullable = true)
     public Timestamp getExpireDeliveryDate() {
         return expireDeliveryDate;
     }
@@ -73,6 +61,8 @@ public class ProjectsEntity {
         this.expireDeliveryDate = expireDeliveryDate;
     }
 
+    @Basic
+    @Column(name = "Description", nullable = true, length = -1)
     public String getDescription() {
         return description;
     }
@@ -81,6 +71,8 @@ public class ProjectsEntity {
         this.description = description;
     }
 
+    @Basic
+    @Column(name = "IsDeleted", nullable = false)
     public boolean isDeleted() {
         return isDeleted;
     }
@@ -89,6 +81,8 @@ public class ProjectsEntity {
         isDeleted = deleted;
     }
 
+    @Basic
+    @Column(name = "CustomerId", nullable = false)
     public int getCustomerId() {
         return customerId;
     }
@@ -97,6 +91,8 @@ public class ProjectsEntity {
         this.customerId = customerId;
     }
 
+    @Basic
+    @Column(name = "PaymentDeadLine", nullable = false)
     public int getPaymentDeadLine() {
         return paymentDeadLine;
     }
@@ -118,6 +114,8 @@ public class ProjectsEntity {
         return Objects.hash(id, name, startDate, expireDeliveryDate, description, isDeleted, customerId, paymentDeadLine);
     }
 
+    @ManyToOne
+    @JoinColumn(name = "CustomerId", referencedColumnName = "Id", nullable = false)
     public CustomersEntity getCustomersByCustomerId() {
         return customersByCustomerId;
     }
@@ -126,6 +124,7 @@ public class ProjectsEntity {
         this.customersByCustomerId = customersByCustomerId;
     }
 
+    @OneToMany(mappedBy = "projectsByProjectId")
     public Collection<ProjectsAssignmentEntity> getProjectsAssignmentsById() {
         return projectsAssignmentsById;
     }
@@ -134,6 +133,7 @@ public class ProjectsEntity {
         this.projectsAssignmentsById = projectsAssignmentsById;
     }
 
+    @OneToMany(mappedBy = "projectsByProjectId")
     public Collection<RecordsEntity> getRecordsById() {
         return recordsById;
     }
