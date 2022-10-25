@@ -2,6 +2,10 @@
 <persistence xmlns="http://java.sun.com/xml/ns/persistence" version="2.0">
 
     <persistence-unit name="ErpPersistence">
+        <class>it.unikey.erpjavabe.DAL.entity.AspNetUsersEntity</class>
+        <class>it.unikey.erpjavabe.DAL.entity.EmployeesEntity</class>
+        <class>it.unikey.erpjavabe.DAL.entity.RecordsEntity</class>
+        <class>it.unikey.erpjavabe.DAL.entity.TimesheetsEntity</class>
         <properties>
             <property name="toplink.jdbc.url" value="jdbc:postgresql://localhost:5432/ErpDB"/>
             <property name="toplink.jdbc.driver" value="org.postgresql.Driver"/>
